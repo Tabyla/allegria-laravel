@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Backend\UserController;
+use App\Http\Controllers\Frontend\CallbackController;
 use App\Http\Controllers\SiteController;
 use Illuminate\Support\Facades\Route;
 
@@ -15,7 +16,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
 Route::domain(env('ADMIN_DOMAIN', 'backend.' . env('DOMAIN', false)))
     ->group(function () {
         Route::middleware('can:use-crud')->group(function () {
@@ -26,4 +26,9 @@ Route::domain(env('ADMIN_DOMAIN', 'backend.' . env('DOMAIN', false)))
     });
 
 Route::get('/', [SiteController::class, 'index'])->name('/');
+Route::get('about', [SiteController::class, 'about'])->name('about');
+Route::get('brands', [SiteController::class, 'brands'])->name('brands');
+Route::get('questions', [SiteController::class, 'questions'])->name('questions');
+Route::post('questions', [CallbackController::class, 'request'])->name('callback.request');
+
 
