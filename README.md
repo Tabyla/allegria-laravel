@@ -1,4 +1,4 @@
-# !Измените этот заголовок на название своего проекта
+# Alegria
 
 ## Quickstart
 1. [Install docker](https://docs.docker.com/install/)
