@@ -18,7 +18,12 @@ class UpdateUserCase
     public function handle(int $id, array $data): void
     {
         $user = $this->user::findOrFail($id);
-        $data['password'] = $this->hasher->make($data['password']);
+        if ($data['password'] == null){
+            $data['password'] = $user->password;
+        }
+        else{
+            $data['password'] = $this->hasher->make($data['password']);
+        }
         $user->syncRoles([]);
         $user->assignRole($data['role']);
         $user->update($data);
