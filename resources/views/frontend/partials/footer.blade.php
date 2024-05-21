@@ -2,7 +2,8 @@
     <section class="footer_form">
         <div class="footer_info">
             <p class="footer_title">Будьте в курсе событий</p>
-            <form method="POST" class="form">
+            <form action="{{ route('newsletter.request') }}" method="POST" class="form">
+                {{ csrf_field() }}
                 <input class="input_form" id="email" name="email" type="email" placeholder="Введите Email">
                 <input src="{{asset('images/form_btn.png')}}" type="image" alt="submit" class="btn_form">
             </form>
