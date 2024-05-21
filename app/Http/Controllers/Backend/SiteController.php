@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Contracts\View\View;
+
 
 
 class SiteController extends Controller
@@ -14,12 +16,12 @@ class SiteController extends Controller
         $this->middleware('auth');
     }
 
-    public function index()
+    public function index(): View
     {
-        return view('admin/index');
+        return view('backend.admin/index');
     }
 
-    public function pages()
+    public function pages(): View
     {
         $pages = array_map(function ($route) {
 
@@ -32,11 +34,11 @@ class SiteController extends Controller
             ];
         }, Route::getRoutes()->get());
 
-        return view('admin/pages', ['pages' => $pages]);
+        return view('backend.admin/pages', ['pages' => $pages]);
     }
 
-    public function settings()
+    public function settings(): View
     {
-        return view('admin/settings', ['user' => Auth::user()]);
+        return view('backend.admin/settings', ['user' => Auth::user()]);
     }
 }

@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('backend.layouts.admin')
 
 @section('title', 'Создать пользователя')
 
@@ -26,7 +26,7 @@
             <form method="POST" action="{{ route('user.index') }}" accept-charset="UTF-8" class="form-horizontal">
                 {{ csrf_field() }}
 
-                @include ('user.form')
+                @include ('backend.user.form')
                 <div class="form-group">
                     <input class="btn btn-primary" type="submit" value="Создать">
                 </div>

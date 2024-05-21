@@ -6,11 +6,11 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
-use App\Http\Requests\User\CreateUserRequest;
-use App\Http\Requests\User\UpdateUserRequest;
+use App\Http\Requests\Backend\User\CreateUserRequest;
+use App\Http\Requests\Backend\User\UpdateUserRequest;
 use App\Models\User;
-use App\UseCases\User\CreateUserCase;
-use App\UseCases\User\UpdateUserCase;
+use App\UseCases\Backend\User\CreateUserCase;
+use App\UseCases\Backend\User\UpdateUserCase;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
@@ -24,7 +24,7 @@ class UserController extends Controller
 
         $users = User::latest()->orderBy('id', 'DESC')->paginate($perPage);
 
-        return view('user.index', [
+        return view('backend.user.index', [
             'users' => $users,
         ]);
     }
@@ -34,7 +34,7 @@ class UserController extends Controller
         $roles = Role::pluck('name', 'id')->all();
         $user = new User();
 
-        return view('user.create', [
+        return view('backend.user.create', [
             'roles' => $roles,
             'user' => $user,
         ]);
@@ -53,7 +53,7 @@ class UserController extends Controller
         $user = User::findOrFail($id);
         $roles = Role::pluck('name', 'id')->all();
 
-        return view('user.edit', [
+        return view('backend.user.edit', [
             'user' => $user,
             'roles' => $roles,
         ]);

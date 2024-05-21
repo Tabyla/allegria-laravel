@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('backend.layouts.admin')
 
 @section('title', 'Изменить пользователя #{{ $user->name }}')
 
@@ -30,7 +30,7 @@
                 {{ method_field('PUT') }}
                 {{ csrf_field() }}
 
-                @include ('user.form')
+                @include ('backend.user.form')
 
                 <div class="form-group">
                     <input class="btn btn-primary" type="submit" value="Обновить">

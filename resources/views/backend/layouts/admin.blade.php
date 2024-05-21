@@ -37,9 +37,9 @@
         <img class="animation__shake" src="/vendor/dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
     </div>
 
-    @include('layouts._top-navbar')
+    @include('backend.layouts._top-navbar')
 
-    @include('layouts._aside')
+    @include('backend.layouts._aside')
 
     <div class="content-wrapper">
 
@@ -71,7 +71,7 @@
 
     </div>
 
-    @include('layouts._footer')
+    @include('backend.layouts._footer')
 
     <aside class="control-sidebar control-sidebar-dark">
 

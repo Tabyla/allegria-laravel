@@ -1,4 +1,4 @@
-@extends('adminlte-layout.master')
+@extends('backend.adminlte-layout.master')
 
 @php( $dashboard_url = View::getSection('dashboard_url') ?? config('adminlte.dashboard_url', 'home') )
 

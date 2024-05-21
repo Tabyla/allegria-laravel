@@ -28,7 +28,7 @@
         <link rel="stylesheet" href="{{ asset('vendor/plugins/overlayScrollbars/css/OverlayScrollbars.min.css') }}">
 
         {{-- Configured Stylesheets --}}
-        @include('adminlte-layout.plugins', ['type' => 'css'])
+        @include('backend.adminlte-layout.plugins', ['type' => 'css'])
 
         <link rel="stylesheet" href="{{asset('vendor/dist/css/adminlte.min.css?v=3.2.0')}}">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
@@ -85,7 +85,7 @@
         <script src="{{ asset('vendor/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js') }}"></script>
 
         {{-- Configured Scripts --}}
-        @include('adminlte-layout.plugins', ['type' => 'js'])
+        @include('backend.adminlte-layout.plugins', ['type' => 'js'])
 
         <script src="{{ asset('vendor/plugins/adminlte/dist/js/adminlte.min.js') }}"></script>
     @else

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\UseCases\User;
+namespace App\UseCases\Backend\User;
 
 use App\Models\User;
 use Illuminate\Contracts\Hashing\Hasher;
