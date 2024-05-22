@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateUsersTable extends Migration
 {
-    private const TABLE_NAME = 'users';
+    private const string TABLE_NAME = 'users';
     public function up(): void
     {
         Schema::create(self::TABLE_NAME, static function (Blueprint $table) {
