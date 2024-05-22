@@ -6,10 +6,9 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Frontend\CallbackRequest;
-use App\Mail\CallbackMail;
+use App\UseCases\Frontend\CreateCallbackCase;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Support\Facades\Mail;
 
 class CallbackController extends Controller
 {
@@ -18,7 +17,7 @@ class CallbackController extends Controller
         return view('frontend.emails.callback');
     }
 
-    public function request(CallbackRequest $request): RedirectResponse
+    public function request(CallbackRequest $request, CreateCallbackCase $case): RedirectResponse
     {
         $request->validated();
 
@@ -28,7 +27,7 @@ class CallbackController extends Controller
             'message' => $request->message,
         ];
 
-        Mail::to('allegriasite@gmail.com')->send(new CallbackMail($details));
+        $case->handle($details);
 
         return back()->with('Поздравляю! Ваш вопрос успешно отправлен!');
     }
