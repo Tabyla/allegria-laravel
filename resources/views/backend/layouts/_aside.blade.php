@@ -36,6 +36,14 @@
                         </p>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a href="{{route('callback.index')}}" class="nav-link">
+                        <i class="nav-icon fas fa-fw fa-phone"></i>
+                        <p>
+                            Обратные звонки
+                        </p>
+                    </a>
+                </li>
             </ul>
         </nav>
 

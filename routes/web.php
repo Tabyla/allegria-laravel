@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\Backend\UserController;
-use App\Http\Controllers\Frontend\CallbackController;
+use App\Http\Controllers\Backend\CallbackController;
 use App\Http\Controllers\Frontend\NewsletterController;
 use App\Http\Controllers\SiteController;
 use Illuminate\Support\Facades\Route;
@@ -21,6 +21,7 @@ Route::domain(env('ADMIN_DOMAIN', 'backend.' . env('DOMAIN', false)))
     ->group(function () {
         Route::middleware('can:use-crud')->group(function () {
             Route::resource('/user', UserController::class);
+            Route::resource('/callback', CallbackController::class);
         });
         require __DIR__ . '/auth.php';
         require __DIR__ . '/admin.php';
