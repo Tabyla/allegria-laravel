@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\Backend\CallbackController;
+use App\Http\Controllers\Frontend\CatalogController;
 use App\Http\Controllers\Frontend\NewsletterController;
 use App\Http\Controllers\SiteController;
 use Illuminate\Support\Facades\Route;
@@ -33,5 +34,7 @@ Route::get('brands', [SiteController::class, 'brands'])->name('brands');
 Route::get('questions', [SiteController::class, 'questions'])->name('questions');
 Route::post('questions', [CallbackController::class, 'request'])->name('callback.request');
 Route::post('/', [NewsletterController::class, 'request'])->name('newsletter.request');
+Route::get('catalog', [CatalogController::class, 'index'])->name('catalog');
+
 
 

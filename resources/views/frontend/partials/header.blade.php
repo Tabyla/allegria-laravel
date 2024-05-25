@@ -6,7 +6,7 @@
             </a>
         </div>
         <div class="nav__links">
-            <a href="#" class="catalog">Каталог</a>
+            <a href="{{ route('catalog') }}" class="catalog">Каталог</a>
             <div class="nav-icon-links">
                 <button id="openAuthModal"><img src="{{asset('images/profile.png')}}" alt="profile img"></button>
                 <a href="wishlist.html"><img src="{{asset('images/favourites.png')}}" alt="favourites img"></a>
