@@ -15,6 +15,7 @@ class CategorySeeder extends Seeder
     {
         $categories = [
             'Одежда',
+            'Кофты и пиджаки',
             'Свитера',
             'Толстовки',
             'Платья',
@@ -48,7 +49,7 @@ class CategorySeeder extends Seeder
             'updated_at' => $now,
         ]);
         $parentIdClothes = DB::table('categories')->where('alias', Str::slug('Одежда'))->value('id');
-        $subcategoriesClothes = array_slice($categories, 1, 9);
+        $subcategoriesClothes = array_slice($categories, 1, 10);
         foreach ($subcategoriesClothes as $category) {
             DB::table('categories')->insert([
                 'name' => $category,
@@ -66,7 +67,7 @@ class CategorySeeder extends Seeder
             'updated_at' => $now,
         ]);
         $parentIdShoes = DB::table('categories')->where('alias', Str::slug('Обувь'))->value('id');
-        $subcategoriesShoes = array_slice($categories, 11, 2);
+        $subcategoriesShoes = array_slice($categories, 12, 2);
         foreach ($subcategoriesShoes as $category) {
             DB::table('categories')->insert([
                 'name' => $category,
@@ -84,7 +85,7 @@ class CategorySeeder extends Seeder
             'updated_at' => $now,
         ]);
         $parentIdBags = DB::table('categories')->where('alias', Str::slug('Сумки'))->value('id');
-        $subcategoriesBags = array_slice($categories, 14, 4);
+        $subcategoriesBags = array_slice($categories, 15, 4);
         foreach ($subcategoriesBags as $category) {
             DB::table('categories')->insert([
                 'name' => $category,
@@ -102,7 +103,7 @@ class CategorySeeder extends Seeder
             'updated_at' => $now,
         ]);
         $parentIdAccessories = DB::table('categories')->where('alias', Str::slug('Аксессуары'))->value('id');
-        $subcategoriesAccessories = array_slice($categories, 19, 6);
+        $subcategoriesAccessories = array_slice($categories, 20, 6);
         foreach ($subcategoriesAccessories as $category) {
             DB::table('categories')->insert([
                 'name' => $category,

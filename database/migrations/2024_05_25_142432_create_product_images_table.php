@@ -19,10 +19,19 @@ class CreateProductImagesTable extends Migration
             $table->foreign('product_id')->references('id')->on('categories')->onDelete('set null');
             $table->timestamps();
         });
+
+        Schema::table('products', function (Blueprint $table) {
+            $table->foreignId('main_image_id')->nullable()->constrained('product_images');
+        });
     }
 
     public function down(): void
     {
         Schema::dropIfExists(self::TABLE_NAME);
+
+        Schema::table('products', function (Blueprint $table) {
+            $table->dropForeign(['main_image_id']);
+            $table->dropColumn('main_image_id');
+        });
     }
 }

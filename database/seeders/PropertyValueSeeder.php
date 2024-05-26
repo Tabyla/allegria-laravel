@@ -33,15 +33,5 @@ class PropertyValueSeeder extends Seeder
                 'updated_at' => $now,
             ]);
         }
-
-        $brands = ['American Vintage', 'Deha', 'George Gina & Lucy', 'Birkenstock'];
-        foreach ($brands as $brand) {
-            DB::table('property_values')->insert([
-                'name' => $brand,
-                'property_id' => 3,
-                'created_at' => $now,
-                'updated_at' => $now,
-            ]);
-        }
     }
 }

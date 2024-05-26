@@ -24,11 +24,5 @@ class PropertySeeder extends Seeder
             'created_at' => $now,
             'updated_at' => $now,
         ]);
-
-        DB::table('properties')->insert([
-            'name' => 'Бренд',
-            'created_at' => $now,
-            'updated_at' => $now,
-        ]);
     }
 }
