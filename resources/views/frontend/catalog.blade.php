@@ -70,43 +70,29 @@
             <div class="catalog-products">
                 <h1>Кофты и пиджаки</h1>
                 <div class="filtration">
-                    <div class="dropdown">
-                        <button class="dropdown-toggle">Размер</button>
-                        <div class="dropdown-menu" id="dropdownMenu">
-                            <div class="dropdown-content">XS</div>
-                            <div class="dropdown-content">S</div>
-                            <div class="dropdown-content">M</div>
-                            <div class="dropdown-content">L</div>
-                            <div class="dropdown-content">XL</div>
-                            <div class="dropdown-content">XP</div>
-                            <button>применить</button>
+                    @foreach($properties as $property)
+                        <div class="dropdown">
+                            <button class="dropdown-toggle">{{ $property->name }}</button>
+                            <div class="dropdown-menu" id="dropdownMenu">
+                                @foreach($property->propertyValue as $value)
+                                    <div data-id="{{ $value->id }}" class="dropdown-content">{{ $value->name }}</div>
+                                @endforeach
+                                <button>применить</button>
+                            </div>
                         </div>
-                    </div>
-                    <div class="dropdown">
-                        <button class="dropdown-toggle">Цвет</button>
-                        <div class="dropdown-menu" id="dropdownMenu">
-                            <div class="dropdown-content black"></div>
-                            <div class="dropdown-content red"></div>
-                            <div class="dropdown-content blue"></div>
-                            <div class="dropdown-content green"></div>
-                            <div class="dropdown-content white"></div>
-                            <div class="dropdown-content purple"></div>
-                            <button>применить</button>
-                        </div>
-                    </div>
+                    @endforeach
                     <div class="dropdown">
                         <button class="dropdown-toggle">Бренд</button>
                         <div class="dropdown-menu" id="dropdownMenu">
-                            <div class="brand-dropdown-content">American vintage</div>
-                            <div class="brand-dropdown-content">Deha</div>
-                            <div class="brand-dropdown-content">George gina lucy</div>
-                            <div class="brand-dropdown-content">Birkenstock</div>
+                            @foreach($brandList as $brand)
+                                <div class="brand-dropdown-content">{{ $brand->name }}</div>
+                            @endforeach
                             <button>применить</button>
                         </div>
                     </div>
                 </div>
                 <div class="sort">
-                    <p class="product-count">19 товаров</p>
+                    <p id="product-count" class="product-count">{{ $productsCount }}</p>
                     <div class="sorting">
                         <p>Сортировать:</p>
                         <select name="sorting" id="sorting">
@@ -117,50 +103,25 @@
                     </div>
                 </div>
                 <div class="products">
-                    <div class="product">
-                        <div class="content-img">
-                            <img loading="lazy" src="{{asset('images/product-1.png')}}" alt="product img">
-                            <input type="image" src="{{asset('images/add_favourites.png')}}" alt="add favourites">
+                    @foreach ($products as $product)
+                        <div class="product">
+                            <div class="content-img">
+                                <img loading="lazy" src="{{ asset('images/' . $product->image_path) }}"
+                                     alt="{{ $product->product_name }}">
+                                <input type="image" src="{{asset('images/add_favourites.png')}}" alt="add favourites">
+                            </div>
+                            <h2 class="name">{{ $product->product_name }}</h2>
+                            <p class="category">{{ $product->brand_name }}</p>
+                            <p class="price">{{ $product->price }} руб</p>
                         </div>
-                        <h2 class="name">american vintage</h2>
-                        <p class="category">Classic Shoes</p>
-                        <p class="price">3800 руб</p>
-                    </div>
-                    <div class="product">
-                        <div class="content-img">
-                            <img loading="lazy" src="{{asset('images/product-2.png')}}" alt="product img">
-                            <input type="image" src="{{asset('images/add_favourites.png')}}" alt="add favourites">
-                        </div>
-                        <h2 class="name">american vintage</h2>
-                        <p class="category">Classic Shoes</p>
-                        <p class="price">3800 руб</p>
-                    </div>
-                    <div class="product">
-                        <div class="content-img">
-                            <img loading="lazy" src="{{asset('images/product-3.png')}}" alt="product img">
-                            <input type="image" src="{{asset('images/add_favourites.png')}}" alt="add favourites">
-                        </div>
-                        <h2 class="name">american vintage</h2>
-                        <p class="category">Classic Shoes</p>
-                        <p class="price">3800 руб</p>
-                    </div>
-                    <div class="product">
-                        <div class="content-img">
-                            <img loading="lazy" src="{{asset('images/product-4.png')}}" alt="product img">
-                            <input type="image" src="{{asset('images/add_favourites.png')}}" alt="add favourites">
-                        </div>
-                        <h2 class="name">american vintage</h2>
-                        <p class="category">Classic Shoes</p>
-                        <p class="price">3800 руб</p>
-                    </div>
+                    @endforeach
                 </div>
                 <div class="show-more">
                     <input type="button" class="submit_btn" value="показать больше">
                 </div>
             </div>
         </section>
-        <script src="{{ asset('js/header.js') }}"></script>
-        <script src="{{ asset('js/catalog.js') }}"></script>
+        <script src="{{ asset('js/catalog.js') }}?v={{ time() }}"></script>
     @endsection
 </main>
 </body>
