@@ -25,47 +25,16 @@
     @section('content')
         <section class="container catalog-block">
             <div class="categories">
-                <div class="box">
-                    <div class="label">Одежда</div>
-                    <div class="content">
-                        <button value="0" class="subcategory">Свитера</button>
-                        <button value="0" class="subcategory">Толстовки</button>
-                        <button value="0" class="subcategory">Платья</button>
-                        <button value="0" class="subcategory">Юбки</button>
-                        <button value="0" class="subcategory">Футболки и топы</button>
-                        <button value="0" class="subcategory">Брюки и шорты</button>
-                        <button value="0" class="subcategory">Рубашки</button>
-                        <button value="0" class="subcategory">Комбинезоны</button>
-                        <button value="0" class="subcategory">Леггинсы</button>
+                @foreach ($categories as $category)
+                    <div class="box">
+                        <div id="{{ $category->id }}" class="label">{{ $category->name }}</div>
+                        <div class="content">
+                            @foreach ($category->children as $child)
+                                <button id="{{ $child->id }}" class="subcategory">{{ $child->name }}</button>
+                            @endforeach
+                        </div>
                     </div>
-                </div>
-                <div class="box">
-                    <div class="label">Обувь</div>
-                    <div class="content">
-                        <button value="0" class="subcategory">Кроссовки</button>
-                        <button value="0" class="subcategory">Шлепанцы</button>
-                    </div>
-                </div>
-                <div class="box">
-                    <div class="label">Сумки</div>
-                    <div class="content">
-                        <button value="0" class="subcategory">Сумки</button>
-                        <button value="0" class="subcategory">Рюкзаки</button>
-                        <button value="0" class="subcategory">Поясные</button>
-                        <button value="0" class="subcategory">Спортивные</button>
-                        <button value="0" class="subcategory">Шопперы</button>
-                    </div>
-                </div>
-                <div class="box">
-                    <div class="label">Аксессуары</div>
-                    <div class="content">
-                        <button value="0" class="subcategory">Головные уборы</button>
-                        <button value="0" class="subcategory">Перчатки</button>
-                        <button value="0" class="subcategory">Шарфы и платки</button>
-                        <button value="0" class="subcategory">Носки</button>
-                        <button value="0" class="subcategory">Гетры</button>
-                    </div>
-                </div>
+                @endforeach
             </div>
             <div class="catalog-products">
                 <h1>Кофты и пиджаки</h1>

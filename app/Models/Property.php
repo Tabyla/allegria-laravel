@@ -17,7 +17,7 @@ class Property extends Model
         'name'
     ];
 
-    public static function properties(): Collection
+    public static function propertyList(): Collection
     {
         $query = Property::with('propertyValue')->get();
 

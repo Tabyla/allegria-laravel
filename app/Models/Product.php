@@ -19,7 +19,7 @@ class Product extends Model
         'name', 'price', 'description', 'alias', 'brand_id', 'category_id', 'main_image_id'
     ];
 
-    public static function countProducts(): int
+    public static function productCount(): int
     {
         $query = DB::table('products')->count();
 
