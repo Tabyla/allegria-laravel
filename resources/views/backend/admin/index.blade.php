@@ -1,4 +1,4 @@
-@extends('backend.layouts.admin')
+ @extends('backend.layouts.admin')
 
 @section('title', 'Панель управления')
 

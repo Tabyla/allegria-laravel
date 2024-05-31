@@ -8,7 +8,7 @@ use App\Mail\CallbackMail;
 use App\Models\Callback;
 use Illuminate\Support\Facades\Mail;
 
-class CreateCallbackCase
+class MakeCallbackCase
 {
     public function __construct(
         private readonly Callback $callback,

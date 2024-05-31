@@ -7,7 +7,7 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Frontend\CallbackRequest;
 use App\Models\Callback;
-use App\UseCases\Frontend\CreateCallbackCase;
+use App\UseCases\Frontend\MakeCallbackCase;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 
@@ -36,7 +36,7 @@ class CallbackController extends Controller
         return view('frontend.emails.callback');
     }
 
-    public function request(CallbackRequest $request, CreateCallbackCase $case): RedirectResponse
+    public function request(CallbackRequest $request, MakeCallbackCase $case): RedirectResponse
     {
         $request->validated();
 

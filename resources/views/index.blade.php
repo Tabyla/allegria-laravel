@@ -85,7 +85,7 @@
                 <div class="popular__products mySwiper">
                     <div class="swiper-wrapper">
                         <div class="product swiper-slide">
-                            <img src="{{asset('images/product-1.png')}}" alt="product image">
+                            <img src="{{asset('images/products/product-1.png')}}" alt="product image">
                             <div class="product_description">
                                 <h4 class="name">replay</h4>
                                 <p class="category">Classic Shoes</p>
@@ -93,7 +93,7 @@
                             </div>
                         </div>
                         <div class="product swiper-slide">
-                            <img src="{{asset('images/product-2.png')}}" alt="product image">
+                            <img src="{{asset('images/products/product-2.png')}}" alt="product image">
                             <div class="product_description">
                                 <h4 class="name">replay</h4>
                                 <p class="category">Classic Shoes</p>
@@ -101,7 +101,7 @@
                             </div>
                         </div>
                         <div class="product swiper-slide">
-                            <img src="{{asset('images/product-3.png')}}" alt="product image">
+                            <img src="{{asset('images/products/product-3.png')}}" alt="product image">
                             <div class="product_description">
                                 <h4 class="name">replay</h4>
                                 <p class="category">Classic Shoes</p>
@@ -109,7 +109,7 @@
                             </div>
                         </div>
                         <div class="product swiper-slide">
-                            <img src="{{asset('images/product-4.png')}}" alt="product image">
+                            <img src="{{asset('images/products/product-4.png')}}" alt="product image">
                             <div class="product_description">
                                 <h4 class="name">Replay</h4>
                                 <p class="category">Classic Shoes</p>
@@ -117,7 +117,7 @@
                             </div>
                         </div>
                         <div class="product swiper-slide">
-                            <img src="{{asset('images/product-2.png')}}" alt="product image">
+                            <img src="{{asset('images/products/product-2.png')}}" alt="product image">
                             <div class="product_description">
                                 <h4 class="name">Replay</h4>
                                 <p class="category">Classic Shoes</p>
@@ -142,7 +142,7 @@
             </div>
             <img src="{{asset('images/about-img.png')}}" alt="about img" class="about_img">
         </section>
-        <script src="{{ asset('js/index.js') }}"></script>
+        <script src="{{ asset('js/index.js') }}?v={{ time() }}"></script>
     @endsection
 </main>
 </body>

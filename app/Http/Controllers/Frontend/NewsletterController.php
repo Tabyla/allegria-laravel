@@ -16,7 +16,7 @@ class NewsletterController extends Controller
     {
         $request->validated();
 
-        Mail::to($request->email)->send(new NewsletterMail());
+        Mail::to($request->newsletterEmail)->send(new NewsletterMail());
 
         return back()->with('Поздравляю! Ваш вопрос успешно отправлен!');
     }

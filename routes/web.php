@@ -4,6 +4,7 @@ use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\Backend\CallbackController;
 use App\Http\Controllers\Frontend\CatalogController;
 use App\Http\Controllers\Frontend\NewsletterController;
+use App\Http\Controllers\Frontend\PasswordRecoveryController;
 use App\Http\Controllers\SiteController;
 use Illuminate\Support\Facades\Route;
 
@@ -27,14 +28,20 @@ Route::domain(env('ADMIN_DOMAIN', 'backend.' . env('DOMAIN', false)))
         require __DIR__ . '/auth.php';
         require __DIR__ . '/admin.php';
     });
-
+require __DIR__ . '/auth.php';
 Route::get('/', [SiteController::class, 'index'])->name('/');
 Route::get('about', [SiteController::class, 'about'])->name('about');
 Route::get('brands', [SiteController::class, 'brands'])->name('brands');
 Route::get('questions', [SiteController::class, 'questions'])->name('questions');
 Route::post('questions', [CallbackController::class, 'request'])->name('callback.request');
-Route::post('/', [NewsletterController::class, 'request'])->name('newsletter.request');
 Route::get('catalog', [CatalogController::class, 'index'])->name('catalog');
+Route::get('/category/{alias}', [CatalogController::class, 'showCategory'])->name('category.show');
+Route::post('/', [NewsletterController::class, 'request'])->name('newsletter.request');
+Route::post('/recovery', [PasswordRecoveryController::class, 'request'])->name('recovery.request');
+Route::get('/recovery/{id}', [PasswordRecoveryController::class, 'send'])->name('recovery.send');
+
+
+
 
 
 
