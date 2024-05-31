@@ -30,14 +30,20 @@
                         <div id="{{ $category->id }}" class="label">{{ $category->name }}</div>
                         <div class="content">
                             @foreach ($category->children as $child)
-                                <button id="{{ $child->id }}" class="subcategory">{{ $child->name }}</button>
+                                <a href="{{ route('category.show', $child->alias) }}" class="subcategory">{{ $child->name }}</a>
                             @endforeach
                         </div>
                     </div>
                 @endforeach
             </div>
             <div class="catalog-products">
-                <h1>Кофты и пиджаки</h1>
+                <h1>
+                    @if (isset($categoryName))
+                        {{ $categoryName }}
+                    @else
+                        Все товары
+                    @endif
+                </h1>
                 <div class="filtration">
                     @foreach($properties as $property)
                         <div class="dropdown">
@@ -71,11 +77,11 @@
                         </select>
                     </div>
                 </div>
-                <div class="products">
+                <div class="products" id="product-list">
                     @foreach ($products as $product)
                         <div class="product">
                             <div class="content-img">
-                                <img loading="lazy" src="{{ asset('images/' . $product->image_path) }}"
+                                <img loading="lazy" src="{{ asset('images/products/' . $product->image_path) }}"
                                      alt="{{ $product->product_name }}">
                                 <input type="image" src="{{asset('images/add_favourites.png')}}" alt="add favourites">
                             </div>
@@ -86,10 +92,15 @@
                     @endforeach
                 </div>
                 <div class="show-more">
-                    <input type="button" class="submit_btn" value="показать больше">
+                    @if ($products->hasMorePages())
+                        <input type="button" class="submit_btn" value="Показать больше" id="load-more">
+                    @endif
                 </div>
             </div>
         </section>
+        <script>
+            const currentUrl = '{{ url()->current() }}';
+        </script>
         <script src="{{ asset('js/catalog.js') }}?v={{ time() }}"></script>
     @endsection
 </main>
