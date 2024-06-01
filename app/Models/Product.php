@@ -36,19 +36,42 @@ class Product extends Model
         return $query;
     }
 
-    public static function productList(): LengthAwarePaginator
+    public static function productList($sort = null): LengthAwarePaginator
     {
         $query = DB::table('products')
             ->join('product_images', 'products.main_image_id', '=', 'product_images.id')
             ->join('brands', 'products.brand_id', '=', 'brands.id')
-            ->select('products.id', 'products.name as product_name', 'brands.name as brand_name',
-                'products.price', 'product_images.image_path as image_path')->orderBy('products.updated_at')
-            ->paginate(10);
+            ->select(
+                'products.id',
+                'products.name as product_name',
+                'brands.name as brand_name',
+                'products.price',
+                'product_images.image_path as image_path'
+            );
 
-        return $query;
+        if ($sort) {
+            switch ($sort) {
+                case 'newest':
+                    $query->orderBy('products.updated_at', 'desc');
+                    break;
+                case 'price_asc':
+                    $query->orderBy('products.price', 'asc');
+                    break;
+                case 'price_desc':
+                    $query->orderBy('products.price', 'desc');
+                    break;
+                default:
+                    $query->orderBy('products.updated_at', 'desc');
+                    break;
+            }
+        } else {
+            $query->orderBy('products.updated_at', 'desc');
+        }
+
+        return $query->paginate(10);
     }
 
-    public static function selectedProductList(int $id): LengthAwarePaginator
+    public static function selectedProductList(int $id, $sort = null): LengthAwarePaginator
     {
         $query = DB::table('products')
             ->join('categories', 'products.category_id', '=', 'categories.id')
@@ -61,11 +84,28 @@ class Product extends Model
                 'brands.name as brand_name',
                 'products.price',
                 'product_images.image_path as image_path'
-            )
-            ->orderBy('products.updated_at')
-            ->paginate(10);
+            );
 
-        return $query;
+        if ($sort) {
+            switch ($sort) {
+                case 'newest':
+                    $query->orderBy('products.updated_at', 'desc');
+                    break;
+                case 'price_asc':
+                    $query->orderBy('products.price', 'asc');
+                    break;
+                case 'price_desc':
+                    $query->orderBy('products.price', 'desc');
+                    break;
+                default:
+                    $query->orderBy('products.updated_at', 'desc');
+                    break;
+            }
+        } else {
+            $query->orderBy('products.updated_at', 'desc');
+        }
+
+        return $query->paginate(10);
     }
 
     public function category(): BelongsTo

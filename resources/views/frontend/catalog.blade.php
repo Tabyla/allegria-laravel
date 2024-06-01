@@ -70,10 +70,11 @@
                     <p id="product-count" class="product-count">{{ $productsCount }}</p>
                     <div class="sorting">
                         <p>Сортировать:</p>
-                        <select name="sorting" id="sorting">
-                            <option>Новинки</option>
-                            <option>По возрастанию цены</option>
-                            <option>По убиванию цены</option>
+                        <select name="sort" id="sort">
+                            <option value="">Выберите...</option>
+                            <option value="newest">Новинки</option>
+                            <option value="price_asc">По возрастанию цены</option>
+                            <option value="price_desc">По убиванию цены</option>
                         </select>
                     </div>
                 </div>
