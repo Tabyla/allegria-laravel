@@ -28,7 +28,8 @@ class CatalogController extends Controller
             return response()->json($products);
         }
 
-        return view('frontend.catalog',
+        return view(
+            'frontend.catalog',
             [
                 'products' => $products,
                 'productsCount' => $productsCount,
@@ -54,7 +55,8 @@ class CatalogController extends Controller
             return response()->json($products);
         }
 
-        return view('frontend.catalog',
+        return view(
+            'frontend.catalog',
             [
                 'products' => $products,
                 'categoryName' => $categoryName,

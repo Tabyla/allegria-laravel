@@ -16,7 +16,13 @@ class Product extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name', 'price', 'description', 'alias', 'brand_id', 'category_id', 'main_image_id'
+        'name',
+        'price',
+        'description',
+        'alias',
+        'brand_id',
+        'category_id',
+        'main_image_id'
     ];
 
     public static function productCount(): int

@@ -22,7 +22,7 @@ class SendRecoveryLinkCase
     {
         $token = sha1((string)time());
 
-        $passwordReset = $this->passwordReset::create([
+        $this->passwordReset::create([
             'email' => $user->email,
             'token' => $token,
             'created_at' => now(),
