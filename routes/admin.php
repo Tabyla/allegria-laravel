@@ -8,7 +8,7 @@ Route::name('admin.')
     ->middleware('can:use-admin-panel')
     ->group(function () {
         Route::get('/', [SiteController::class, 'index'])
-            ->name('/');
+            ->name('index');
 
         Route::get('/pages', [SiteController::class, 'pages'])
             ->name('pages');

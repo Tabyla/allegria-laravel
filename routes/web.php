@@ -5,6 +5,7 @@ use App\Http\Controllers\Backend\CallbackController;
 use App\Http\Controllers\Frontend\CatalogController;
 use App\Http\Controllers\Frontend\NewsletterController;
 use App\Http\Controllers\Frontend\PasswordRecoveryController;
+use App\Http\Controllers\Frontend\ProfileController;
 use App\Http\Controllers\SiteController;
 use Illuminate\Support\Facades\Route;
 
@@ -32,6 +33,11 @@ require __DIR__ . '/auth.php';
 Route::get('/', [SiteController::class, 'index'])->name('/');
 Route::get('about', [SiteController::class, 'about'])->name('about');
 Route::get('brands', [SiteController::class, 'brands'])->name('brands');
+
+Route::get('profile', [ProfileController::class, 'index'])->middleware('auth')->name('profile');
+Route::post('profile', [ProfileController::class, 'changePassword'])->middleware('auth')->name('profile.change-password');
+
+
 Route::get('questions', [SiteController::class, 'questions'])->name('questions');
 Route::post('questions', [CallbackController::class, 'request'])->name('callback.request');
 Route::get('catalog', [CatalogController::class, 'index'])->name('catalog');

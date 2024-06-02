@@ -40,7 +40,7 @@
                     @foreach($users as $item)
                         <tr>
                             <td>{{ $item->id }}</td>
-                            <td><a href="{{route('user.edit', $item->id)}}">{{ $item->name }}</a></td>
+                            <td><a href="{{route('user.edit', $item->id)}}">{{ $item->profile->firstname }}</a></td>
                             <td>{{ $item->email }}</td>
                             <td>
                                 @if(!empty($item->getRoleNames()))

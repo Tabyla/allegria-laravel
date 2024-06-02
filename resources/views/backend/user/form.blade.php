@@ -1,6 +1,6 @@
 <div class="form-group">
     <label for="name" class="control-label">Имя</label>
-    <input class="form-control" name="name" type="text" id="name" value="{{ old('name', $user->name) }}">
+    <input class="form-control" name="name" type="text" id="name" value="{{ old('name', $user->profile->firstname) }}">
     {!! $errors->first('name', '<p class="help-block">:message</p>') !!}
 </div>
 <div class="form-group">

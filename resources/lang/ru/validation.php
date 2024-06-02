@@ -162,6 +162,8 @@ return [
         'email' => 'Почта',
         'name' => 'Имя',
         'role' => 'Роль',
+        'new_password' => 'Старый пароль',
+        'new_password_confirmation' => 'Повтор нового пароля',
     ],
 
 ];
