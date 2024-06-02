@@ -6,7 +6,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateUserProfileTable extends Migration
+class CreateUserProfilesTable extends Migration
 {
     private const string TABLE_NAME = 'user_profiles';
 
@@ -17,7 +17,7 @@ class CreateUserProfileTable extends Migration
             $table->string('surname');
             $table->string('firstname');
             $table->string('phone');
-            $table->string('address');
+            $table->string('address')->nullable();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->primary('user_id');

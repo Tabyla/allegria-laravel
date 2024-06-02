@@ -20,7 +20,7 @@ class UserSeeder extends Seeder
             'created_at' => $now,
             'updated_at' => $now,
         ]);
-        DB::table('user_profile')->insert([
+        DB::table('user_profiles')->insert([
             'user_id' => 1,
             'surname' => 'Admin',
             'firstname' => 'Admin',
@@ -34,12 +34,12 @@ class UserSeeder extends Seeder
             'created_at' => $now,
             'updated_at' => $now,
         ]);
-        DB::table('user_profile')->insert([
+        DB::table('user_profiles')->insert([
             'user_id' => 2,
-            'surname' => 'Пережогин',
-            'firstname' => 'Александр',
-            'phone' => '89505481552',
-            'address' => 'г. Екатеринбург, ул. Циолковского, 3, кв. 255',
+            'surname' => 'User',
+            'firstname' => 'User',
+            'phone' => '89126110811',
+            'address' => 'г. Екатеринбург, ул. Белинского, 149, кв. 67',
         ]);
     }
 }

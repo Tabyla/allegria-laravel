@@ -7,7 +7,7 @@
                     {{ csrf_field() }}
                     <h4>вход</h4>
                     <div class="auth-form_data">
-                        <input class="form_input" required id="email"
+                        <input class="form_input" required id="loginEmail"
                                name="email" type="email" placeholder="Email">
                         {!! $errors->first('email', '<p class="help-block">:message</p>') !!}
                         <div class="password">
@@ -22,7 +22,7 @@
                 <div class="auth_links">
                     <button id="openRecoveryModal" class="red_link">Забыли пароль</button>
                     <p class="red_link">/</p>
-                    <a href="registr.html" class="red_link">У меня нет аккаунта</a>
+                    <a href="{{ route('reg') }}" class="red_link">У меня нет аккаунта</a>
                 </div>
             </div>
         </div>

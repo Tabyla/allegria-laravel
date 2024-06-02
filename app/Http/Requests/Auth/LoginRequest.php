@@ -36,7 +36,7 @@ class LoginRequest extends FormRequest
         if (!Auth::attempt($this->only('email', 'password'), $this->filled('remember'))) {
             RateLimiter::hit($this->throttleKey());
 
-            $userExists = User::where('email', $this->email)->exists();
+            $userExists = User::where('email', $this->loginEmail)->exists();
 
             if ($userExists) {
                 throw ValidationException::withMessages([
@@ -44,7 +44,7 @@ class LoginRequest extends FormRequest
                 ]);
             } else {
                 throw ValidationException::withMessages([
-                    'email' => __('auth.failed'),
+                    'loginEmail' => __('auth.failed'),
                 ]);
             }
         }

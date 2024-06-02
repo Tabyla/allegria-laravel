@@ -36,10 +36,6 @@ class ProfileController extends Controller
             return redirect()->back()->withErrors(['current_password' => 'Вы ввели неверный пароль'])->withInput();
         }
 
-        if ($request->new_password !== $request->new_password_confirmation){
-            return redirect()->back()->withErrors(['new_password_confirmation' => 'Неверено введен повторый пароль'])->withInput();
-        }
-
         $user->password = Hash::make($request->new_password);
         $user->save();
 
