@@ -59,7 +59,7 @@ class Product extends Model
 
         if ($sort) {
             $sortOrder = match ($sort) {
-                'price_asc' => ['products.price'],
+                'price_asc' => ['products.price', 'asc'],
                 'price_desc' => ['products.price', self::DESC],
                 default => ['products.updated_at', self::DESC],
             };
@@ -89,7 +89,7 @@ class Product extends Model
 
         if ($sort) {
             $sortOrder = match ($sort) {
-                'price_asc' => ['products.price'],
+                'price_asc' => ['products.price', 'asc'],
                 'price_desc' => ['products.price', self::DESC],
                 default => ['products.updated_at', self::DESC],
             };
