@@ -15,6 +15,8 @@ class Product extends Model
 {
     use HasFactory;
 
+    private const string DESC = 'desc';
+
     protected $fillable = [
         'name',
         'price',
@@ -56,23 +58,16 @@ class Product extends Model
             );
 
         if ($sort) {
-            switch ($sort) {
-                case 'newest':
-                    $query->orderBy('products.updated_at', 'desc');
-                    break;
-                case 'price_asc':
-                    $query->orderBy('products.price', 'asc');
-                    break;
-                case 'price_desc':
-                    $query->orderBy('products.price', 'desc');
-                    break;
-                default:
-                    $query->orderBy('products.updated_at', 'desc');
-                    break;
-            }
+            $sortOrder = match ($sort) {
+                'price_asc' => ['products.price'],
+                'price_desc' => ['products.price', self::DESC],
+                default => ['products.updated_at', self::DESC],
+            };
         } else {
-            $query->orderBy('products.updated_at', 'desc');
+            $sortOrder = ['products.updated_at', self::DESC];
         }
+
+        $query->orderBy($sortOrder[0], $sortOrder[1]);
 
         return $query->paginate(10);
     }
@@ -93,23 +88,16 @@ class Product extends Model
             );
 
         if ($sort) {
-            switch ($sort) {
-                case 'newest':
-                    $query->orderBy('products.updated_at', 'desc');
-                    break;
-                case 'price_asc':
-                    $query->orderBy('products.price', 'asc');
-                    break;
-                case 'price_desc':
-                    $query->orderBy('products.price', 'desc');
-                    break;
-                default:
-                    $query->orderBy('products.updated_at', 'desc');
-                    break;
-            }
+            $sortOrder = match ($sort) {
+                'price_asc' => ['products.price'],
+                'price_desc' => ['products.price', self::DESC],
+                default => ['products.updated_at', self::DESC],
+            };
         } else {
-            $query->orderBy('products.updated_at', 'desc');
+            $sortOrder = ['products.updated_at', self::DESC];
         }
+
+        $query->orderBy($sortOrder[0], $sortOrder[1]);
 
         return $query->paginate(10);
     }
