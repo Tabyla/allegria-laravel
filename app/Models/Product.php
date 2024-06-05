@@ -74,32 +74,21 @@ class Product extends Model
         return $query->paginate(10);
     }
 
-    public static function selectedProductList(int $id, $sort = null): LengthAwarePaginator
+    public static function productInfo(int $id): LengthAwarePaginator
     {
         $query = DB::table('products')
-            ->join('categories', 'products.category_id', '=', 'categories.id')
             ->join('product_images', 'products.main_image_id', '=', 'product_images.id')
             ->join('brands', 'products.brand_id', '=', 'brands.id')
-            ->where('products.category_id', $id)
+            ->join('categories', 'products.category_id', '=', 'categories.id')
             ->select(
                 'products.id',
                 'products.name as product_name',
+                'categories.name as category_name',
                 'brands.name as brand_name',
                 'products.price',
-                'product_images.image_path as image_path'
-            );
-
-        if ($sort) {
-            $sortOrder = match ($sort) {
-                'price_asc' => ['products.price', 'asc'],
-                'price_desc' => ['products.price', self::DESC],
-                default => ['products.updated_at', self::DESC],
-            };
-        } else {
-            $sortOrder = ['products.updated_at', self::DESC];
-        }
-
-        $query->orderBy($sortOrder[0], $sortOrder[1]);
+                'product_images.image_path as image_path',
+                'products.description',
+            )->where('products.id', '=', $id);
 
         return $query->paginate(10);
     }

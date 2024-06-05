@@ -33,6 +33,7 @@ require __DIR__ . '/profile.php';
 require __DIR__ . '/passwordRecovery.php';
 require __DIR__ . '/catalog.php';
 require __DIR__ . '/callback.php';
+require __DIR__ . '/product.php';
 
 
 

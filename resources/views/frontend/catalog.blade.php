@@ -30,7 +30,8 @@
                         <div id="{{ $category->id }}" class="label">{{ $category->name }}</div>
                         <div class="content">
                             @foreach ($category->children as $child)
-                                <a href="{{ route('category.show', $child->alias) }}" class="subcategory">{{ $child->name }}</a>
+                                <a href="{{ route('category.show', $child->alias) }}"
+                                   class="subcategory">{{ $child->name }}</a>
                             @endforeach
                         </div>
                     </div>
@@ -91,7 +92,7 @@
                                      alt="{{ $product->product_name }}">
                                 <input type="image" src="{{asset('images/add_favourites.png')}}" alt="add favourites">
                             </div>
-                            <h2 class="name">{{ $product->product_name }}</h2>
+                            <a href="{{ route('product.index', ['alias' => $product->alias]) }}"><h2 class="name">{{ $product->product_name }}</h2></a>
                             <p class="category">{{ $product->brand_name }}</p>
                             <p class="price">{{ $product->price }} руб</p>
                         </div>
