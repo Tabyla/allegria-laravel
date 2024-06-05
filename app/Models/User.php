@@ -29,6 +29,11 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function favorites(): Relation
+    {
+        return $this->hasOne(Favorite::class, 'user_id');
+    }
+
     public function profile(): Relation
     {
         return $this->hasOne(UserProfile::class, 'user_id');

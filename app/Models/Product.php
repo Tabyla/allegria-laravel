@@ -108,6 +108,11 @@ class Product extends Model
         return $this->hasMany(ProductImage::class);
     }
 
+    public function favorites(): Relation
+    {
+        return $this->hasOne(Favorite::class, 'product_id');
+    }
+
     public function mainImage(): BelongsTo
     {
         return $this->belongsTo(ProductImage::class, 'main_image_id');

@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -90,9 +91,24 @@
                             <div class="content-img">
                                 <img loading="lazy" src="{{ asset('images/products/' . $product->image_path) }}"
                                      alt="{{ $product->product_name }}">
-                                <input type="image" src="{{asset('images/add_favourites.png')}}" alt="add favourites">
+                                @auth()
+                                    @if(!in_array($product->id, $favorites))
+                                        <form action="{{ route('favorites.add', $product->id) }}" method="POST">
+                                            {{ csrf_field() }}
+                                            <input type="image" src="{{asset('images/add_favourites.png')}}"
+                                                   alt="add favourites">
+                                        </form>
+                                    @else
+                                        <form action="{{ route('favorites.remove', $product->id) }}" method="POST">
+                                            {{ csrf_field() }}
+                                            <input type="image" src="{{asset('images/favourites-select.png')}}"
+                                                   alt="add favourites">
+                                        </form>
+                                    @endif
+                                @endauth
                             </div>
-                            <a href="{{ route('product.index', ['alias' => $product->alias]) }}"><h2 class="name">{{ $product->product_name }}</h2></a>
+                            <a href="{{ route('product.index', ['alias' => $product->alias]) }}"><h2
+                                    class="name">{{ $product->product_name }}</h2></a>
                             <p class="category">{{ $product->brand_name }}</p>
                             <p class="price">{{ $product->price }} руб</p>
                         </div>

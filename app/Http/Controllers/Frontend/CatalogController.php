@@ -7,6 +7,7 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Models\Brand;
 use App\Models\Category;
+use App\Models\Favorite;
 use App\Models\Product;
 use App\Models\Property;
 use Illuminate\Contracts\View\View;
@@ -24,6 +25,7 @@ class CatalogController extends Controller
         $brandList = Brand::brandList();
         $properties = Property::propertyList();
         $categories = Category::categoryList();
+        $favorites = Favorite::where('user_id', auth()->id())->pluck('product_id')->toArray();
 
         if ($request->ajax()) {
             return response()->json($products);
@@ -36,7 +38,8 @@ class CatalogController extends Controller
                 'productsCount' => $productsCount,
                 'brandList' => $brandList,
                 'properties' => $properties,
-                'categories' => $categories
+                'categories' => $categories,
+                'favorites' => $favorites,
             ]
         );
     }
