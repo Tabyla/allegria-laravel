@@ -6,12 +6,28 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Favorite;
+use App\Models\Product;
 use App\UseCases\Frontend\AddFavoriteCase;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Contracts\View\View;
+
 
 class FavoriteController extends Controller
 {
+    public function index(): View
+    {
+        $user = auth()->user();
+        $favorites = Product::favoriteProducts($user->id);
+
+        return view(
+            'frontend.favorites',
+            [
+                'favorites' => $favorites,
+            ]
+        );
+    }
+
     public function add(int $productId, AddFavoriteCase $case): RedirectResponse
     {
         $case->handle($productId);

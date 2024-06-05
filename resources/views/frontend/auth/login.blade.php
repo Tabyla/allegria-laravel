@@ -50,7 +50,6 @@
         </div>
     </div>
 </div>
-
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         @if ($errors->has('email') || $errors->has('password'))
