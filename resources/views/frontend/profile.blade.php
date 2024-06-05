@@ -70,13 +70,19 @@
                         </div>
                     </div>
                     <div class="address-block info" id="block2">
-                        <form class="address_form" method="post">
+                        <div class="default-address-block">
+                            <p>Адрес: {{$profile->address}}</p>
+                            <button id="editAddress" type="button">Редактировать</button>
+                        </div>
+                        <form class="address_form" id="address_form" action="{{ route('profile.updateAddress') }}"
+                              method="post">
+                            {{csrf_field()}}
                             <div class="form_content">
-                                <input type="text" placeholder="Город">
-                                <input type="text" placeholder="Улица">
+                                <input type="text" id="city" name="city" placeholder="Город">
+                                <input type="text" id="street" name="street" placeholder="Улица">
                                 <div class="inputs_row">
-                                    <input type="text" placeholder="Дом">
-                                    <input type="text" placeholder="Квартира">
+                                    <input type="text" id="house" name="house" placeholder="Дом">
+                                    <input type="text" id="apartment" name="apartment" placeholder="Квартира">
                                 </div>
                             </div>
                             <input type="submit" class="submit_btn" value="сохранить">
@@ -89,65 +95,31 @@
                                 наличием
                                 и ценой и легко найти.
                             </p>
-                            <button class="submit_btn"><a href="#">перейти в каталог</a></button>
+                            <button class="submit_btn"><a href="{{ route('catalog') }}">перейти в каталог</a></button>
                         </div>
-                        <div class="products-list-block">
-                            <div class="product">
-                                <div class="list-delete"><img src="{{asset('images/close.png')}}" alt="delete"></div>
-                                <img src="{{asset('images/products/product-4.png')}}" alt="product img"
-                                     class="product-image">
-                                <div class="product-info">
-                                    <div class="product-content">
-                                        <h4 class="name">Replay</h4>
-                                        <p class="category">Classic Shoes</p>
-                                        <p class="cost">9600 Руб.</p>
+                        <div class="products-list-block" id="product-list-block">
+                            @foreach($favorites as $product)
+                                <div class="product">
+                                    <form action="{{ route('favorites.remove', $product->id) }}" method="POST">
+                                        {{ csrf_field() }}
+                                        <button type="submit" class="list-delete"><img
+                                                src="{{asset('images/close.png')}}" alt="delete">
+                                        </button>
+                                    </form>
+                                    <img src="{{ asset('images/products/' . $product->image_path) }}"
+                                         alt="{{ $product->product_name }}"
+                                         class="product-image">
+                                    <div class="product-info">
+                                        <div class="product-content">
+                                            <h4 class="name">{{$product->product_name}}</h4>
+                                            <p class="category">{{$product->category_name}}</p>
+                                            <p class="cost">{{$product->price}} Руб.</p>
+                                        </div>
+                                        <button class="list-btn">Добавить в корзину</button>
                                     </div>
-                                    <button class="list-btn">Добавить в корзину</button>
                                 </div>
-                            </div>
-                            <div class="product-line"></div>
-                            <div class="product">
-                                <div class="list-delete"><img src="{{asset('images/close.png')}}" alt="delete"></div>
-                                <img src="{{asset('images/products/product-3.png')}}" alt="product img"
-                                     class="product-image">
-                                <div class="product-info">
-                                    <div class="product-content">
-                                        <h4 class="name">Replay</h4>
-                                        <p class="category">Classic Shoes</p>
-                                        <p class="cost">9600 Руб.</p>
-                                    </div>
-                                    <button class="list-btn">Добавить в корзину</button>
-                                </div>
-                            </div>
-                            <div class="product-line"></div>
-                            <div class="product">
-                                <div class="list-delete"><img src="{{asset('images/close.png')}}" alt="delete"></div>
-                                <img src="{{asset('images/products/product-2.png')}}" alt="product img"
-                                     class="product-image">
-                                <div class="product-info">
-                                    <div class="product-content">
-                                        <h4 class="name">Replay</h4>
-                                        <p class="category">Classic Shoes</p>
-                                        <p class="cost">9600 Руб.</p>
-                                    </div>
-                                    <button class="list-btn">Добавить в корзину</button>
-                                </div>
-                            </div>
-                            <div class="product-line"></div>
-                            <div class="product">
-                                <div class="list-delete"><img src="{{asset('images/close.png')}}" alt="delete"></div>
-                                <img src="{{asset('images/products/product-1.png')}}" alt="product img"
-                                     class="product-image">
-                                <div class="product-info">
-                                    <div class="product-content">
-                                        <h4 class="name">Replay</h4>
-                                        <p class="category">Classic Shoes</p>
-                                        <p class="cost">9600 Руб.</p>
-                                    </div>
-                                    <button class="list-btn">Добавить в корзину</button>
-                                </div>
-                            </div>
-                            <div class="product-line"></div>
+                                <div class="product-line"></div>
+                            @endforeach
                         </div>
                     </div>
                     <div class="password-block text info" id="block4">

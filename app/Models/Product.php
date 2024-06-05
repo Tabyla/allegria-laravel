@@ -93,6 +93,23 @@ class Product extends Model
         return $query->paginate(10);
     }
 
+    public static function favoriteProducts(int $id): LengthAwarePaginator
+    {
+        $query = DB::table('products')
+            ->join('product_images', 'products.main_image_id', '=', 'product_images.id')
+            ->join('categories', 'products.category_id', '=', 'categories.id')
+            ->join('favorites', 'products.id', '=', 'favorites.product_id')
+            ->select(
+                'products.id',
+                'products.name as product_name',
+                'categories.name as category_name',
+                'products.price',
+                'product_images.image_path as image_path',
+            )->where('favorites.user_id', '=', $id);
+
+        return $query->paginate(10);
+    }
+
     public function category(): BelongsTo
     {
         return $this->belongsTo(Category::class);
