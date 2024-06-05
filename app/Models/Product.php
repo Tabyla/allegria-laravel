@@ -27,35 +27,38 @@ class Product extends Model
         'main_image_id'
     ];
 
-    public static function productCount(): int
+    public static function productCount(int $id = null): int
     {
         $query = DB::table('products')->count();
 
-        return $query;
-    }
-
-    public static function selectedProductCount(int $id): int
-    {
-        $query = DB::table('products')
-            ->join('categories', 'products.category_id', '=', 'categories.id')
-            ->where('products.category_id', $id)
-            ->count();
+        if ($id) {
+            $query = DB::table('products')->where('products.category_id', $id)->count();
+        }
 
         return $query;
     }
 
-    public static function productList($sort = null): LengthAwarePaginator
+    public static function productList(string $sort = null, string $brand = null, int $id = null): LengthAwarePaginator
     {
         $query = DB::table('products')
             ->join('product_images', 'products.main_image_id', '=', 'product_images.id')
             ->join('brands', 'products.brand_id', '=', 'brands.id')
             ->select(
                 'products.id',
+                'products.alias',
                 'products.name as product_name',
                 'brands.name as brand_name',
                 'products.price',
                 'product_images.image_path as image_path'
             );
+
+        if ($id) {
+            $query->where('products.category_id', $id);
+        }
+
+        if ($brand) {
+            $query->where('brands.name', '=', $brand);
+        };
 
         if ($sort) {
             $sortOrder = match ($sort) {
@@ -66,7 +69,6 @@ class Product extends Model
         } else {
             $sortOrder = ['products.updated_at', self::DESC];
         }
-
         $query->orderBy($sortOrder[0], $sortOrder[1]);
 
         return $query->paginate(10);

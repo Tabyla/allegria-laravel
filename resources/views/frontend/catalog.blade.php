@@ -57,13 +57,18 @@
                         </div>
                     @endforeach
                     <div class="dropdown">
-                        <button class="dropdown-toggle">Бренд</button>
-                        <div class="dropdown-menu" id="dropdownMenu">
-                            @foreach($brandList as $brand)
-                                <div class="brand-dropdown-content">{{ $brand->name }}</div>
-                            @endforeach
-                            <button>применить</button>
-                        </div>
+                        <form action="{{ request()->routeIs('category.show') ?
+                            route('category.show', ['alias' => request('alias')]) : route('catalog') }}" method="GET">
+                            <input type="hidden" name="brand_name" id="brand_name" value="{{ request('brand_name') }}">
+                            <button type="button" class="dropdown-toggle">Бренд</button>
+                            <div class="dropdown-menu" id="dropdownMenu">
+                                @foreach($brandList as $brand)
+                                    <div class="brand-dropdown-content"
+                                         data-name="{{ $brand->name }}">{{ $brand->name }}</div>
+                                @endforeach
+                                <button type="submit">применить</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
                 <div class="sort">
@@ -101,6 +106,30 @@
         </section>
         <script>
             const currentUrl = '{{ url()->current() }}';
+            const sort = document.getElementById('sort');
+
+            sort.addEventListener('change', function () {
+                const brandName = "{{ request('brand_name') }}";
+                const sortValue = this.value;
+                if (brandName) {
+                    const url = currentUrl + "?brand_name=" + brandName + "&sort=" + sortValue;
+                    window.location.href = url;
+                } else {
+                    window.location.href = currentUrl + '?sort=' + sortValue;
+                }
+                sort.value = sortValue;
+            });
+
+            function getParameterByName(name) {
+                const url = new URL(window.location.href);
+                return url.searchParams.get(name);
+            }
+
+            const sortValue = getParameterByName('sort');
+
+            if (sortValue) {
+                sort.value = sortValue;
+            }
         </script>
         <script src="{{ asset('js/catalog.js') }}?v={{ time() }}"></script>
     @endsection

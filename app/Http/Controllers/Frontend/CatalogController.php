@@ -18,7 +18,8 @@ class CatalogController extends Controller
     public function index(Request $request): JsonResponse|View
     {
         $sort = $request->get('sort');
-        $products = Product::productList($sort);
+        $brand = $request->get('brand_name');
+        $products = Product::productList($sort, $brand);
         $productsCount = Product::productCount();
         $brandList = Brand::brandList();
         $properties = Property::propertyList();
@@ -45,8 +46,9 @@ class CatalogController extends Controller
         $selectedCategory = Category::where('alias', $alias)->firstOrFail();
         $categoryName = $selectedCategory->name;
         $sort = $request->get('sort');
-        $products = Product::selectedProductList($selectedCategory->id, $sort);
-        $productsCount = Product::selectedProductCount($selectedCategory->id);
+        $brand = $request->get('brand_name');
+        $products = Product::productList($sort, $brand, $selectedCategory->id);
+        $productsCount = Product::productCount($selectedCategory->id);
         $brandList = Brand::brandList();
         $properties = Property::propertyList();
         $categories = Category::categoryList();

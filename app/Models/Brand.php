@@ -18,7 +18,7 @@ class Brand extends Model
 
     public static function brandList(): Collection
     {
-        $query = DB::table('brands')->select('name')->get();
+        $query = DB::table('brands')->select('id', 'name')->get();
 
         return $query;
     }
