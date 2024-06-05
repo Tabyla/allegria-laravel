@@ -13,7 +13,7 @@ class CallbackRequest extends FormRequest
         return [
             'name' => ['required', 'string', 'min:2', 'max:30'],
             'email' => ['required', 'email', 'min:5', 'max:30'],
-            'message' => 'required|string|max:500',
+            'message' => ['required', 'string', 'max:500'],
         ];
     }
 }
