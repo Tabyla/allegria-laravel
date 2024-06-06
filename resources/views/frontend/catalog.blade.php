@@ -1,155 +1,133 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700;900&display=swap"
-          rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant:wght@300;400;500;600;700&display=swap"
-          rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap"
-          rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('css/catalog.css') }}?v={{ time() }}">
-    <link rel="stylesheet" href="{{ asset('css/header.css') }}?v={{ time() }}">
-    <link rel="stylesheet" href="{{ asset('css/footer.css') }}?v={{ time() }}">
-    <title>Популярные вопросы</title>
-</head>
-<body>
 @extends('frontend.layouts.app')
-<main>
-    @section('content')
-        <section class="container catalog-block">
-            <div class="categories">
-                @foreach ($categories as $category)
-                    <div class="box">
-                        <div id="{{ $category->id }}" class="label">{{ $category->name }}</div>
-                        <div class="content">
-                            @foreach ($category->children as $child)
-                                <a href="{{ route('category.show', $child->alias) }}"
-                                   class="subcategory">{{ $child->name }}</a>
+@section('title', 'Каталог')
+
+@section('additional_css')
+    <link rel="stylesheet" href="{{ asset('css/catalog.css') }}?v={{ time() }}">
+@endsection
+@section('content')
+    <section class="container catalog-block">
+        <div class="categories">
+            @foreach ($categories as $category)
+                <div class="box">
+                    <div id="{{ $category->id }}" class="label">{{ $category->name }}</div>
+                    <div class="content">
+                        @foreach ($category->children as $child)
+                            <a href="{{ route('category.show', $child->alias) }}"
+                               class="subcategory">{{ $child->name }}</a>
+                        @endforeach
+                    </div>
+                </div>
+            @endforeach
+        </div>
+        <div class="catalog-products">
+            <h1>
+                @if (isset($categoryName))
+                    {{ $categoryName }}
+                @else
+                    Все товары
+                @endif
+            </h1>
+            <div class="filtration">
+                @foreach($properties as $property)
+                    <div class="dropdown">
+                        <button class="dropdown-toggle">{{ $property->name }}</button>
+                        <div class="dropdown-menu" id="dropdownMenu">
+                            @foreach($property->propertyValue as $value)
+                                <div data-id="{{ $value->id }}" class="dropdown-content">{{ $value->name }}</div>
                             @endforeach
+                            <button>применить</button>
                         </div>
                     </div>
                 @endforeach
-            </div>
-            <div class="catalog-products">
-                <h1>
-                    @if (isset($categoryName))
-                        {{ $categoryName }}
-                    @else
-                        Все товары
-                    @endif
-                </h1>
-                <div class="filtration">
-                    @foreach($properties as $property)
-                        <div class="dropdown">
-                            <button class="dropdown-toggle">{{ $property->name }}</button>
-                            <div class="dropdown-menu" id="dropdownMenu">
-                                @foreach($property->propertyValue as $value)
-                                    <div data-id="{{ $value->id }}" class="dropdown-content">{{ $value->name }}</div>
-                                @endforeach
-                                <button>применить</button>
-                            </div>
-                        </div>
-                    @endforeach
-                    <div class="dropdown">
-                        <form action="{{ request()->routeIs('category.show') ?
+                <div class="dropdown">
+                    <form action="{{ request()->routeIs('category.show') ?
                             route('category.show', ['alias' => request('alias')]) : route('catalog') }}" method="GET">
-                            <input type="hidden" name="brand_name" id="brand_name" value="{{ request('brand_name') }}">
-                            <button type="button" class="dropdown-toggle">Бренд</button>
-                            <div class="dropdown-menu" id="dropdownMenu">
-                                @foreach($brandList as $brand)
-                                    <div class="brand-dropdown-content"
-                                         data-name="{{ $brand->name }}">{{ $brand->name }}</div>
-                                @endforeach
-                                <button type="submit">применить</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-                <div class="sort">
-                    <p id="product-count" class="product-count">{{ $productsCount }}</p>
-                    <div class="sorting">
-                        <p>Сортировать:</p>
-                        <select name="sort" id="sort">
-                            <option value="">Выберите...</option>
-                            <option value="newest">Новинки</option>
-                            <option value="price_asc">По возрастанию цены</option>
-                            <option value="price_desc">По убиванию цены</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="products" id="product-list">
-                    @foreach ($products as $product)
-                        <div class="product">
-                            <div class="content-img">
-                                <img loading="lazy" src="{{ asset('images/products/' . $product->image_path) }}"
-                                     alt="{{ $product->product_name }}">
-                                @auth()
-                                    @if(!in_array($product->id, $favorites))
-                                        <form action="{{ route('favorites.add', $product->id) }}" method="POST">
-                                            {{ csrf_field() }}
-                                            <input type="image" src="{{asset('images/add_favourites.png')}}"
-                                                   alt="add favourites">
-                                        </form>
-                                    @else
-                                        <form action="{{ route('favorites.remove', $product->id) }}" method="POST">
-                                            {{ csrf_field() }}
-                                            <input type="image" src="{{asset('images/favourites-select.png')}}"
-                                                   alt="add favourites">
-                                        </form>
-                                    @endif
-                                @endauth
-                            </div>
-                            <a href="{{ route('product.index', ['alias' => $product->alias]) }}"><h2
-                                    class="name">{{ $product->product_name }}</h2></a>
-                            <p class="category">{{ $product->brand_name }}</p>
-                            <p class="price">{{ $product->price }} руб</p>
+                        <input type="hidden" name="brand_name" id="brand_name" value="{{ request('brand_name') }}">
+                        <button type="button" class="dropdown-toggle">Бренд</button>
+                        <div class="dropdown-menu" id="dropdownMenu">
+                            @foreach($brandList as $brand)
+                                <div class="brand-dropdown-content"
+                                     data-name="{{ $brand->name }}">{{ $brand->name }}</div>
+                            @endforeach
+                            <button type="submit">применить</button>
                         </div>
-                    @endforeach
-                </div>
-                <div class="show-more">
-                    @if ($products->hasMorePages())
-                        <input type="button" class="submit_btn" value="Показать больше" id="load-more">
-                    @endif
+                    </form>
                 </div>
             </div>
-        </section>
-        <script>
-            const currentUrl = '{{ url()->current() }}';
-            const sort = document.getElementById('sort');
+            <div class="sort">
+                <p id="product-count" class="product-count">{{ $productsCount }}</p>
+                <div class="sorting">
+                    <p>Сортировать:</p>
+                    <select name="sort" id="sort">
+                        <option value="">Выберите...</option>
+                        <option value="newest">Новинки</option>
+                        <option value="price_asc">По возрастанию цены</option>
+                        <option value="price_desc">По убиванию цены</option>
+                    </select>
+                </div>
+            </div>
+            <div class="products" id="product-list">
+                @foreach ($products as $product)
+                    <div class="product">
+                        <div class="content-img">
+                            <img loading="lazy" src="{{ asset('images/products/' . $product->image_path) }}"
+                                 alt="{{ $product->product_name }}">
+                            @auth()
+                                @if(!in_array($product->id, $favorites))
+                                    <form action="{{ route('favorites.add', $product->id) }}" method="POST">
+                                        {{ csrf_field() }}
+                                        <input type="image" src="{{asset('images/add_favourites.png')}}"
+                                               alt="add favourites">
+                                    </form>
+                                @else
+                                    <form action="{{ route('favorites.remove', $product->id) }}" method="POST">
+                                        {{ csrf_field() }}
+                                        <input type="image" src="{{asset('images/favourites-select.png')}}"
+                                               alt="add favourites">
+                                    </form>
+                                @endif
+                            @endauth
+                        </div>
+                        <a href="{{ route('product.index', ['alias' => $product->alias]) }}"><h2
+                                class="name">{{ $product->product_name }}</h2></a>
+                        <p class="category">{{ $product->brand_name }}</p>
+                        <p class="price">{{ $product->price }} руб</p>
+                    </div>
+                @endforeach
+            </div>
+            <div class="show-more">
+                @if ($products->hasMorePages())
+                    <input type="button" class="submit_btn" value="Показать больше" id="load-more">
+                @endif
+            </div>
+        </div>
+    </section>
+    <script>
+        const currentUrl = '{{ url()->current() }}';
+        const sort = document.getElementById('sort');
 
-            sort.addEventListener('change', function () {
-                const brandName = "{{ request('brand_name') }}";
-                const sortValue = this.value;
-                if (brandName) {
-                    const url = currentUrl + "?brand_name=" + brandName + "&sort=" + sortValue;
-                    window.location.href = url;
-                } else {
-                    window.location.href = currentUrl + '?sort=' + sortValue;
-                }
-                sort.value = sortValue;
-            });
-
-            function getParameterByName(name) {
-                const url = new URL(window.location.href);
-                return url.searchParams.get(name);
+        sort.addEventListener('change', function () {
+            const brandName = "{{ request('brand_name') }}";
+            const sortValue = this.value;
+            if (brandName) {
+                const url = currentUrl + "?brand_name=" + brandName + "&sort=" + sortValue;
+                window.location.href = url;
+            } else {
+                window.location.href = currentUrl + '?sort=' + sortValue;
             }
+            sort.value = sortValue;
+        });
 
-            const sortValue = getParameterByName('sort');
+        function getParameterByName(name) {
+            const url = new URL(window.location.href);
+            return url.searchParams.get(name);
+        }
 
-            if (sortValue) {
-                sort.value = sortValue;
-            }
-        </script>
-        <script src="{{ asset('js/catalog.js') }}?v={{ time() }}"></script>
-    @endsection
-</main>
-</body>
-</html>
+        const sortValue = getParameterByName('sort');
+
+        if (sortValue) {
+            sort.value = sortValue;
+        }
+    </script>
+    <script src="{{ asset('js/catalog.js') }}?v={{ time() }}"></script>
+@endsection

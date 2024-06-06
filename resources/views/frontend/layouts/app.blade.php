@@ -1,3 +1,7 @@
+<!DOCTYPE html>
+<html lang="en">
+@include('frontend.partials.head')
+<body>
 @include('frontend.partials.header')
 @include('frontend.auth.login')
 <main>
@@ -5,5 +9,5 @@
 </main>
 
 @include('frontend.partials.footer')
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-
+</body>
+</html>
