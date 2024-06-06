@@ -13,13 +13,15 @@
                                                           alt="profile img"></a>
                     <a href="{{ route('favorites') }}"><img src="{{asset('images/favourites.png')}}"
                                                             alt="favourites img"></a>
+                    <a href="{{ route('cart') }}"><img src="{{asset('images/cart.png')}}" alt="cart img"></a>
                 @else
                     <button class="openAuthModal"><img src="{{asset('images/profile.png')}}"
-                                                    alt="profile img"></button>
+                                                       alt="profile img"></button>
                     <button class="openAuthModal"><img src="{{asset('images/favourites.png')}}"
-                                                    alt="favourites img"></button>
+                                                       alt="favourites img"></button>
+                    <button class="openAuthModal"><img src="{{asset('images/cart.png')}}"
+                                                       alt="cart img"></button>
                 @endauth
-                <a href="cart.html"><img src="{{asset('images/cart.png')}}" alt="cart img"></a>
             </div>
         </div>
     </nav>

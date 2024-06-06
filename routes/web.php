@@ -35,6 +35,7 @@ require __DIR__ . '/catalog.php';
 require __DIR__ . '/callback.php';
 require __DIR__ . '/product.php';
 require __DIR__ . '/favorite.php';
+require __DIR__ . '/cart.php';
 
 
 
