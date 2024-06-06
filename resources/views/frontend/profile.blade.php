@@ -52,7 +52,7 @@
                     </div>
                 </div>
                 <div class="address-block info" id="block2">
-                    <div class="default-address-block">
+                    <div class="default-address-block" id="default-address-block">
                         <p>Адрес: {{$profile->address}}</p>
                         <button id="editAddress" type="button">Редактировать</button>
                     </div>
@@ -130,6 +130,18 @@
             $('#block4').addClass('content')
             $('.btn4').addClass('active')
             @endif
+        });
+
+        $(document).ready(function() {
+            const hasAddress = {{ $profile->address ? 'true' : 'false' }};
+
+            if (hasAddress) {
+                $('#default-address-block').css('display', 'flex');
+                $('#address_form').css('display', 'none');
+            } else {
+                $('#default-address-block').css('display', 'none');
+                $('#address_form').css('display', 'flex');
+            }
         });
     </script>
     <script src="{{ asset('js/profile.js') }}?v={{ time() }}"></script>
