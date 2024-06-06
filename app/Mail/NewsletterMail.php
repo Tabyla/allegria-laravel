@@ -12,11 +12,6 @@ class NewsletterMail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public function __construct()
-    {
-        //
-    }
-
     public function build(): NewsletterMail
     {
         return $this->subject('Подписка на рассылку')->view('frontend.emails.newsletter');
