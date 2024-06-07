@@ -28,31 +28,53 @@
                 @endif
             </h1>
             <div class="filtration">
-                @foreach($properties as $property)
+                <form id="filter-form" action="{{ request()->routeIs('category.show') ?
+                            route('category.show', ['alias' => request('alias')]) : route('catalog') }}" method="GET">
+                    <input type="hidden" name="size_name" id="size_name" value="{{ request('size_name') }}">
+                    <input type="hidden" name="color_name" id="color_name" value="{{ request('color_name') }}">
+                    <input type="hidden" name="brand_name" id="brand_name" value="{{ request('brand_name') }}">
+
                     <div class="dropdown">
-                        <button class="dropdown-toggle">{{ $property->name }}</button>
-                        <div class="dropdown-menu" id="dropdownMenu">
-                            @foreach($property->propertyValue as $value)
-                                <div data-id="{{ $value->id }}" class="dropdown-content">{{ $value->name }}</div>
+                        <button type="button" class="dropdown-toggle">Размер</button>
+                        <div class="dropdown-menu" id="size-dropdownMenu">
+                            @foreach($properties as $property)
+                                @if($property->name == 'Размер')
+                                    @foreach($property->propertyValue as $value)
+                                        <div data-name="{{ $value->name }}"
+                                             class="dropdown-content size-option">{{ $value->name }}</div>
+                                    @endforeach
+                                @endif
                             @endforeach
-                            <button>применить</button>
+                            <button type="button" class="apply-filter" data-property="size">применить</button>
                         </div>
                     </div>
-                @endforeach
-                <div class="dropdown">
-                    <form action="{{ request()->routeIs('category.show') ?
-                            route('category.show', ['alias' => request('alias')]) : route('catalog') }}" method="GET">
-                        <input type="hidden" name="brand_name" id="brand_name" value="{{ request('brand_name') }}">
+
+                    <div class="dropdown">
+                        <button type="button" class="dropdown-toggle">Цвет</button>
+                        <div class="dropdown-menu" id="color-dropdownMenu">
+                            @foreach($properties as $property)
+                                @if($property->name == 'Цвет')
+                                    @foreach($property->propertyValue as $value)
+                                        <div data-name="{{ $value->name }}"
+                                             class="dropdown-content color-option">{{ $value->name }}</div>
+                                    @endforeach
+                                @endif
+                            @endforeach
+                            <button type="button" class="apply-filter" data-property="color">Применить</button>
+                        </div>
+                    </div>
+
+                    <div class="dropdown">
                         <button type="button" class="dropdown-toggle">Бренд</button>
-                        <div class="dropdown-menu" id="dropdownMenu">
+                        <div class="dropdown-menu" id="brand-dropdownMenu">
                             @foreach($brandList as $brand)
-                                <div class="brand-dropdown-content"
+                                <div class="brand-dropdown-content brand-option"
                                      data-name="{{ $brand->name }}">{{ $brand->name }}</div>
                             @endforeach
-                            <button type="submit">применить</button>
+                            <button type="button" class="apply-filter" data-property="brand">Применить</button>
                         </div>
-                    </form>
-                </div>
+                    </div>
+                </form>
             </div>
             <div class="sort">
                 <p id="product-count" class="product-count">{{ $productsCount }}</p>
@@ -105,12 +127,14 @@
     <script>
         const currentUrl = '{{ url()->current() }}';
         const sort = document.getElementById('sort');
+        const sizeName = "{{ request('size_name') }}";
+        const colorName = "{{ request('color_name') }}";
+        const brandName = "{{ request('brand_name') }}";
 
         sort.addEventListener('change', function () {
-            const brandName = "{{ request('brand_name') }}";
             const sortValue = this.value;
-            if (brandName) {
-                const url = currentUrl + "?brand_name=" + brandName + "&sort=" + sortValue;
+            if (sizeName || colorName || brandName) {
+                const url = currentUrl + '?size_name=' + sizeName + '&color_name=' + colorName + '&brand_name=' + brandName + "&sort=" + sortValue;
                 window.location.href = url;
             } else {
                 window.location.href = currentUrl + '?sort=' + sortValue;

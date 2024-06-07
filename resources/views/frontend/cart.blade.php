@@ -10,7 +10,7 @@
         <div class="cart-info text">
             <img src="{{asset('images/cart-default-image.png')}}" alt="cart img">
             <p>Добавьте что-то, чтобы сэкономить время и сделать шопинг еще более приятным.</p>
-            <button class="submit_btn"><a href="#">Перейти в каталог</a></button>
+            <button class="submit_btn"><a href="{{route('catalog')}}">Перейти в каталог</a></button>
         </div>
     </section>
     <section class="order">

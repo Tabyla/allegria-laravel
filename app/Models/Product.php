@@ -27,19 +27,13 @@ class Product extends Model
         'main_image_id'
     ];
 
-    public static function productCount(int $id = null): int
-    {
-        $query = DB::table('products')->count();
-
-        if ($id) {
-            $query = DB::table('products')->where('products.category_id', $id)->count();
-        }
-
-        return $query;
-    }
-
-    public static function productList(string $sort = null, string $brand = null, int $id = null): LengthAwarePaginator
-    {
+    public static function productList(
+        string $sort = null,
+        int $size = null,
+        int $color = null,
+        string $brand = null,
+        int $id = null,
+    ): LengthAwarePaginator {
         $query = DB::table('products')
             ->join('product_images', 'products.main_image_id', '=', 'product_images.id')
             ->join('brands', 'products.brand_id', '=', 'brands.id')
@@ -56,9 +50,19 @@ class Product extends Model
             $query->where('products.category_id', $id);
         }
 
+        if ($size) {
+            $query->join('product_property_values as ppv_size', 'products.id', '=', 'ppv_size.product_id')
+                ->where('ppv_size.property_value_id', '=', $size);
+        }
+
+        if ($color) {
+            $query->join('product_property_values as ppv_color', 'products.id', '=', 'ppv_color.product_id')
+                ->where('ppv_color.property_value_id', '=', $color);
+        }
+
         if ($brand) {
             $query->where('brands.name', '=', $brand);
-        };
+        }
 
         if ($sort) {
             $sortOrder = match ($sort) {
