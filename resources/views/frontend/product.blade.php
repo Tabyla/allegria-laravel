@@ -45,7 +45,24 @@
                     @endforeach
                 </div>
             </div>
-            <button type="button" id="add_to_cart" class="add-to-cart">добавить в корзину</button>
+            @if ($cart->has($productId))
+                <div class="quantity-control" id="favorite-item-{{$productId}}">
+                    <button class="decrease-quantity" data-product-id="{{ $productId }}">-
+                    </button>
+                    <span class="product-quantity">{{ $cart->get($productId) }}</span>
+                    <button class="increase-quantity" data-product-id="{{ $productId }}">+
+                    </button>
+                </div>
+            @else
+                <form id="favorite-btn-{{$productId}}"
+                      action="{{route('cart.add', $productId)}}" class="password_form"
+                      method="post">
+                    {{ csrf_field() }}
+                    <button type="submit" class="add-to-cart">Добавить в
+                        корзину
+                    </button>
+                </form>
+            @endif
             <button type="button" id="buy-btn" class="buy-btn">купить в один клик</button>
             <div class="modals-help">
                 <a id="payment" href="#">Оплата и доставка</a>
@@ -57,5 +74,48 @@
             @endforeach
         </div>
     </section>
+    <script>
+        $(document).ready(function () {
+            $('.decrease-quantity').click(function () {
+                let productId = $(this).data('product-id');
+                let quantityElement = $(this).siblings('.product-quantity');
+                let currentQuantity = parseInt(quantityElement.text());
+
+                if (currentQuantity > 0) {
+                    updateCart(productId, currentQuantity - 1, quantityElement);
+                }
+            });
+
+            $('.increase-quantity').click(function () {
+                let productId = $(this).data('product-id');
+                let quantityElement = $(this).siblings('.product-quantity');
+                let currentQuantity = parseInt(quantityElement.text());
+
+                updateCart(productId, currentQuantity + 1, quantityElement);
+            });
+
+            function updateCart(productId, newQuantity, quantityElement) {
+                $.ajax({
+                    url: '/cart/update',
+                    method: 'POST',
+                    data: {
+                        _token: '{{ csrf_token() }}',
+                        product_id: productId,
+                        quantity: newQuantity
+                    },
+                    success: function () {
+                        if (newQuantity <= 0) {
+                            location.reload();
+                        } else {
+                            quantityElement.text(newQuantity);
+                        }
+                    },
+                    error: function (xhr) {
+                        alert('Ошибка при обновлении корзины: ' + xhr.responseText);
+                    }
+                });
+            }
+        });
+    </script>
     <script src="{{ asset('js/product.js') }}?v={{ time() }}"></script>
 @endsection

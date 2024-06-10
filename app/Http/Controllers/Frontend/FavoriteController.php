@@ -11,19 +11,28 @@ use App\UseCases\Frontend\AddFavoriteCase;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Contracts\View\View;
+use Psr\Container\ContainerExceptionInterface;
+use Psr\Container\NotFoundExceptionInterface;
 
 
 class FavoriteController extends Controller
 {
+    /**
+     * @throws ContainerExceptionInterface
+     * @throws NotFoundExceptionInterface
+     */
     public function index(): View
     {
         $user = auth()->user();
         $favorites = Product::favoriteProducts($user->id);
+        $cart = session()->get('cart', []);
+        $cartItemsMap = collect(array_map(function($item) { return $item['quantity']; }, $cart));
 
         return view(
             'frontend.favorites',
             [
                 'favorites' => $favorites,
+                'cart' => $cartItemsMap,
             ]
         );
     }

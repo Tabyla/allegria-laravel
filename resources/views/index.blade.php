@@ -15,7 +15,7 @@
                             <p class="brand_text">бренд</p>
                             <h1>american vintage</h1>
                         </div>
-                        <a class="btn" href="#">Смотреть коллекцию</a>
+                        <a class="btn" href="{{route('catalog')}}">Смотреть коллекцию</a>
                     </div>
                 </div>
             </swiper-slide>
@@ -26,7 +26,7 @@
                             <p class="brand_text">бренд</p>
                             <h1>george gina <br>lucy</h1>
                         </div>
-                        <a class="red_btn" href="#">Смотреть коллекцию</a>
+                        <a class="red_btn" href="{{route('catalog')}}">Смотреть коллекцию</a>
                     </div>
                     <img src="{{asset('images/banner-2.png')}}" alt="banner woman image">
                 </div>
@@ -38,7 +38,7 @@
                             <p class="brand_text">бренд</p>
                             <h1>birkenstock</h1>
                         </div>
-                        <a class="red_btn" href="#">Смотреть коллекцию</a>
+                        <a class="red_btn" href="{{route('catalog')}}">Смотреть коллекцию</a>
                     </div>
                     <img src="{{asset('images/banner-3.png')}}" alt="banner woman image">
                 </div>
@@ -52,7 +52,7 @@
                 <h2>new <br>arrival</h2>
                 <p>Lorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipLorem ipsumLorem ipLorem ipsumLorem
                     ipsumLorem ipsumLorem ipsumLorem ipLorem ipsumLorem ip</p>
-                <a class="btn" href="#">Смотреть коллекцию</a>
+                <a class="btn" href="{{route('catalog')}}">Смотреть коллекцию</a>
             </div>
             <div class="collection__image">
                 <img src="{{asset('images/collection-img.png')}}" alt="collection img">

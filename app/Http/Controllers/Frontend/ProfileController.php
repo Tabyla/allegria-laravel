@@ -13,14 +13,22 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Psr\Container\ContainerExceptionInterface;
+use Psr\Container\NotFoundExceptionInterface;
 
 class ProfileController extends Controller
 {
+    /**
+     * @throws ContainerExceptionInterface
+     * @throws NotFoundExceptionInterface
+     */
     public function index(): View
     {
         $user = auth()->user();
         $profile = $user->profile;
         $favorites = Product::favoriteProducts($user->id);
+        $cart = session()->get('cart', []);
+        $cartItemsMap = collect(array_map(function($item) { return $item['quantity']; }, $cart));
 
         return view(
             'frontend.profile',
@@ -28,6 +36,7 @@ class ProfileController extends Controller
                 'user' => $user,
                 'profile' => $profile,
                 'favorites' => $favorites,
+                'cart' => $cartItemsMap,
             ]
         );
     }

@@ -47,93 +47,120 @@
                                 <input type="text" id="apartment" name="apartment" placeholder="Квартира">
                             </div>
                         </div>
-                        <input type="submit" class="submit_btn" value="сохранить">
+                        <input type="button" id="save-address" class="submit_btn" value="сохранить">
                     </form>
                     <button type="button" id="close-address-form">Назад</button>
                 </div>
             </div>
             <div class="cart-content">
-                <div class="list-block info" id="block3">
-                    <div class="default-list-block text">
-                        <p>В вас нет избранных товаров.</p>
-                        <p>Добавляйте вещи, которые вам понравились, в список избранных, чтобы наблюдать за их наличием
-                            и ценой и легко найти.
-                        </p>
-                        <button class="submit_btn"><a href="{{ route('catalog') }}">перейти в каталог</a></button>
-                    </div>
+                <div class="list-block info">
                     <div class="products-list-block">
-                        <div class="product">
-                            <div class="list-delete"><img src="{{asset('images/close.png')}}" alt="delete"></div>
-                            <img src="{{asset('images/products/product-4.png')}}" alt="product img"
-                                 class="product-image">
-                            <div class="product-info">
-                                <div class="product-content">
-                                    <h4 class="name">Replay</h4>
-                                    <p class="category">Classic Shoes</p>
-                                    <p class="cost">9600 Руб.</p>
+                        @if(count($cart) > 0)
+                            @foreach($cart as $productId => $details)
+                                <div class="product" id="cart-item-{{$productId}}">
+                                    <form action="{{ route('cart.remove', ['id' => $productId]) }}" method="POST">
+                                        {{ csrf_field() }}
+                                        <button type="submit" class="list-delete"><img
+                                                src="{{asset('images/close.png')}}" alt="delete">
+                                        </button>
+                                    </form>
+                                    <img src="{{ asset('images/products/' . $details['image']) }}"
+                                         alt="{{$details['name'] }}"
+                                         class="product-image">
+                                    <div class="product-info">
+                                        <div class="product-content">
+                                            <h4 class="name">{{ $details['name'] }}</h4>
+                                            <p class="category">{{ $details['category'] }}</p>
+                                            <p class="cost">{{ $details['price'] }} Руб.</p>
+                                        </div>
+                                        <div class="quantity-control">
+                                            <button class="decrease-quantity" data-product-id="{{ $productId }}">-
+                                            </button>
+                                            <span class="product-quantity">{{ $details['quantity'] }}</span>
+                                            <button class="increase-quantity" data-product-id="{{ $productId }}">+
+                                            </button>
+                                        </div>
+                                    </div>
                                 </div>
+                                <div class="product-line" id="cart-item-line-{{$productId}}"></div>
+                            @endforeach
+                            <div class="total-price">
+                                <p>Всего:</p>
+                                <p class="price"
+                                   id="cart-total">{{ array_sum(array_map(function($item) { return $item['price'] * $item['quantity']; }, $cart)) }}
+                                    руб</p>
                             </div>
-                        </div>
-                        <div class="product-line"></div>
-                        <div class="product">
-                            <div class="list-delete"><img src="{{asset('images/close.png')}}" alt="delete"></div>
-                            <img src="{{asset('images/products/product-3.png')}}" alt="product img"
-                                 class="product-image">
-                            <div class="product-info">
-                                <div class="product-content">
-                                    <h4 class="name">Replay</h4>
-                                    <p class="category">Classic Shoes</p>
-                                    <p class="cost">9600 Руб.</p>
-                                </div>
+                        @else
+                            <div class="default-list-block text">
+                                <h3>Корзина пуста.</h3>
+                                <p>Добавляйте вещи, которые вам понравились, в список избранных, чтобы наблюдать за их
+                                    наличием
+                                    и ценой и легко найти.
+                                </p>
+                                <button class="submit_btn"><a href="{{ route('catalog') }}">перейти в каталог</a>
+                                </button>
                             </div>
-                        </div>
-                        <div class="product-line"></div>
-                        <div class="product">
-                            <div class="list-delete"><img src="{{asset('images/close.png')}}" alt="delete"></div>
-                            <img src="{{asset('images/products/product-2.png')}}" alt="product img"
-                                 class="product-image">
-                            <div class="product-info">
-                                <div class="product-content">
-                                    <h4 class="name">Replay</h4>
-                                    <p class="category">Classic Shoes</p>
-                                    <p class="cost">9600 Руб.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="product-line"></div>
-                        <div class="product">
-                            <div class="list-delete"><img src="{{asset('images/close.png')}}" alt="delete"></div>
-                            <img src="{{asset('images/products/product-1.png')}}" alt="product img"
-                                 class="product-image">
-                            <div class="product-info">
-                                <div class="product-content">
-                                    <h4 class="name">Replay</h4>
-                                    <p class="category">Classic Shoes</p>
-                                    <p class="cost">9600 Руб.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="product-line"></div>
-                        <div class="total-price">
-                            <p>Всего:</p>
-                            <p class="price">7600 руб</p>
-                        </div>
+                        @endif
                     </div>
                 </div>
             </div>
         </div>
     </section>
     <script>
-        $(document).ready(function() {
-            $('#open-address-form').on('click', function() {
-                $('#order-block').css('display', 'none');
-                $('#edit-address').css('display', 'flex');
-            });
-            $('#close-address-form').on('click', function() {
-                $('#edit-address').css('display', 'none');
-                $('#order-block').css('display', 'flex');
-            });
+        $('.decrease-quantity').click(function () {
+            let productId = $(this).data('product-id');
+            let quantityElement = $(this).siblings('.product-quantity');
+            let currentQuantity = parseInt(quantityElement.text());
+
+            if (currentQuantity > 0) {
+                updateCart(productId, currentQuantity - 1, quantityElement);
+            }
         });
+
+        $('.increase-quantity').click(function () {
+            let productId = $(this).data('product-id');
+            let quantityElement = $(this).siblings('.product-quantity');
+            let currentQuantity = parseInt(quantityElement.text());
+
+            updateCart(productId, currentQuantity + 1, quantityElement);
+        });
+
+
+        function updateCart(productId, newQuantity, quantityElement) {
+            $.ajax({
+                url: '/cart/update',
+                method: 'POST',
+                data: {
+                    _token: '{{ csrf_token() }}',
+                    product_id: productId,
+                    quantity: newQuantity
+                },
+                success: function () {
+                    if (newQuantity <= 0) {
+                        location.reload();
+                        updateTotal();
+                    } else {
+                        quantityElement.text(newQuantity);
+                        updateTotal();
+                    }
+                },
+                error: function (xhr) {
+                    alert('Ошибка при обновлении корзины: ' + xhr.responseText);
+                }
+            });
+        }
+
+        function updateTotal() {
+            let total = 0;
+
+            $('.product').each(function () {
+                let price = parseFloat($(this).find('.cost').text().replace(' Руб.', ''));
+                let quantity = parseInt($(this).find('.product-quantity').text());
+                total += price * quantity;
+            });
+
+            $('#cart-total').text(total + ' руб');
+        }
     </script>
     <script src="{{ asset('js/cart.js') }}?v={{ time() }}"></script>
 @endsection
