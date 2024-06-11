@@ -46,6 +46,8 @@
                                 @endif
                             @endforeach
                             <button type="button" class="apply-filter" data-property="size">применить</button>
+                            <button type="button" class="cancel-filter" id="cancel-size-filter">Отменить</button>
+
                         </div>
                     </div>
 
@@ -61,6 +63,7 @@
                                 @endif
                             @endforeach
                             <button type="button" class="apply-filter" data-property="color">Применить</button>
+                            <button type="button" class="cancel-filter" id="cancel-color-filter">Отменить</button>
                         </div>
                     </div>
 
@@ -72,6 +75,7 @@
                                      data-name="{{ $brand->name }}">{{ $brand->name }}</div>
                             @endforeach
                             <button type="button" class="apply-filter" data-property="brand">Применить</button>
+                            <button type="button" class="cancel-filter" id="cancel-brand-filter">Отменить</button>
                         </div>
                     </div>
                 </form>
