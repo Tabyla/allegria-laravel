@@ -114,6 +114,22 @@ class Product extends Model
         return $query->paginate(10);
     }
 
+    public static function orderProducts(int $id): LengthAwarePaginator
+    {
+        $query = DB::table('products')
+            ->join('brands', 'products.brand_id', '=', 'brands.id')
+            ->join('order_products', 'products.id', '=', 'order_products.product_id')
+            ->select(
+                'products.id',
+                'products.name as product_name',
+                'brands.name as brand_name',
+                'products.price',
+                'order_products.quantity',
+            )->where('order_products.order_id', '=', $id);
+
+        return $query->paginate(10);
+    }
+
     public function category(): BelongsTo
     {
         return $this->belongsTo(Category::class);

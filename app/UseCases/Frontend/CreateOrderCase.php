@@ -6,6 +6,7 @@ namespace App\UseCases\Frontend;
 
 use App\Models\Order;
 use App\Models\OrderProduct;
+use Illuminate\Support\Facades\Session;
 
 class CreateOrderCase
 {
@@ -35,5 +36,7 @@ class CreateOrderCase
                 'quantity' => $item['quantity'],
             ]);
         }
+
+        Session::put('last_order_id', $order->id);
     }
 }
