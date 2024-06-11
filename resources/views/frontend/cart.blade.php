@@ -17,24 +17,28 @@
         <h1>Корзина</h1>
         <div class="cart">
             <div class="cart-order">
-                <form method="post" action="#" class="order-content" id="order-block">
+                <div class="order-content" id="order-block">
                     <div class="user-info">
-                        <input required class="form_input" type="text" placeholder="Фамилия"
+                        <input required class="form_input" type="text" disabled placeholder="Фамилия"
                                value="{{$profile->surname}}">
-                        <input required class="form_input" type="text" placeholder="Имя"
+                        <input required class="form_input" type="text" disabled placeholder="Имя"
                                value="{{$profile->firstname}}">
-                        <input required class="form_input" type="email" placeholder="Email"
+                        <input required class="form_input" type="email" disabled placeholder="Email"
                                value="{{$user->email}}">
-                        <input required class="form_input" type="tel" placeholder="Номер телефона"
+                        <input required class="form_input" type="tel" disabled placeholder="Номер телефона"
                                value="{{$profile->phone}}">
                     </div>
                     <div class="order-address text" id="default-address-block">
                         <h2>доставка</h2>
-                        <p>{{$profile->address}}</p>
+                        <p id="address-text">{{$profile->address}}</p>
                         <button type="button" id="open-address-form">Редактировать</button>
                     </div>
-                    <input type="submit" class="submit_btn" value="заказать">
-                </form>
+                    <form action="{{ route('order.create') }}" id="order-form" method="POST">
+                        {{csrf_field()}}
+                        <input type="hidden" name="address" id="address-input">
+                        <input type="submit" id="order-button" class="submit_btn" value="заказать">
+                    </form>
+                </div>
                 <div class="edit-address" id="edit-address">
                     <p>Редактирование адреса</p>
                     <form class="address_form" id="address_form" method="post">
