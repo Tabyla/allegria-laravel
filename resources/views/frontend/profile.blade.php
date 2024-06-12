@@ -77,10 +77,9 @@
                 </div>
                 <div class="list-block info" id="block3">
                     <div class="default-list-block text">
-                        <p>В вас нет избранных товаров.</p>
+                        <p>У вас нет избранных товаров.</p>
                         <p>Добавляйте вещи, которые вам понравились, в список избранных, чтобы наблюдать за их
-                            наличием
-                            и ценой и легко найти.
+                            наличием и ценой и легко найти.
                         </p>
                         <button class="submit_btn"><a href="{{ route('catalog') }}">перейти в каталог</a></button>
                     </div>
@@ -127,21 +126,29 @@
                     </div>
                 </div>
                 <div class="orders-history info" id="block4">
-                    @foreach($orders as $order)
-                        <div class="order-item">
-                            <div class="order-left">
-                                <h3>Заказ №{{ $order->id }}</h3>
+                    <div class="default-order-block text">
+                        <p>Здесь будут ваши доставки.</p>
+                        <p>Оформите заказ в корзине и возвращайтесь, чтобы узнать, где товары сейчас</p>
+                        <button class="submit_btn"><a href="{{ route('catalog') }}">перейти в каталог</a></button>
+                    </div>
+                    <div class="orders-content" id="product-orders-block">
+                        @foreach($orders as $order)
+                            <div class="order-item">
+                                <div class="order-left">
+                                    <h3>Заказ №{{ $order->id }}</h3>
+                                </div>
+                                <div class="order-right">
+                                    <p>Дата заказа: {{ $order->created_at->format('d.m.Y') }}</p>
+                                    <p>Статус: {{ $order->translated_status }}</p>
+                                </div>
                             </div>
-                            <div class="order-right">
-                                <p>Дата заказа: {{ $order->created_at->format('d.m.Y') }}</p>
-                                <p>Статус:  {{ $order->translated_status }}</p>
+                            <div class="order-link">
+                                <button type="button" class="submit_btn"><a
+                                        href="{{ route('order.show', $order->id) }}">Подробнее</a></button>
                             </div>
-                        </div>
-                        <div class="order-link">
-                            <button type="button" class="submit_btn"><a href="{{ route('order.show', $order->id) }}">Подробнее</a></button>
-                        </div>
-                        <div class="product-line"></div>
-                    @endforeach
+                            <div class="product-line"></div>
+                        @endforeach
+                    </div>
                 </div>
                 <div class="password-block text info" id="block5">
                     <form action="{{route('profile.change-password')}}" class="password_form" method="post">
