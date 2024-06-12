@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Schema;
 class CreateOrdersTable extends Migration
 {
     private const string TABLE_NAME = 'orders';
+
     public function up(): void
     {
         Schema::create(self::TABLE_NAME, function (Blueprint $table) {
@@ -16,6 +17,10 @@ class CreateOrdersTable extends Migration
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->decimal('total_price', 8, 2);
             $table->string('address');
+            $table->enum('status', ['new', 'awaiting_confirmation', 'paid', 'cancelled', 'completed'])
+                ->default('new');
+            $table->string('payment_id')->nullable();
+            $table->string('payment_status')->nullable();
             $table->timestamps();
         });
     }
