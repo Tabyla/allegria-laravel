@@ -6,12 +6,13 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Product;
+use App\UseCases\Frontend\CreateCartCase;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Illuminate\View\View;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\NotFoundExceptionInterface;
-use Illuminate\Http\Request;
 
 class CartController extends Controller
 {
@@ -39,7 +40,7 @@ class CartController extends Controller
      * @throws ContainerExceptionInterface
      * @throws NotFoundExceptionInterface
      */
-    public function addToCart(int $productId): JsonResponse|RedirectResponse
+    public function addToCart(int $productId, CreateCartCase $case): JsonResponse|RedirectResponse
     {
         $product = Product::find($productId);
 
@@ -47,25 +48,7 @@ class CartController extends Controller
             return response()->json(['message' => 'Ошибка! Товар не найден.'], 404);
         }
 
-        $cart = session()->get('cart', []);
-
-        if (isset($cart[$productId])) {
-            $cart[$productId]['quantity']++;
-        } else {
-            $cart[$productId] = [
-                "name" => $product->name,
-                "quantity" => 1,
-                "price" => $product->price,
-                "category" => $product->category->name,
-                "image" => $product->mainImage->image_path
-            ];
-        }
-
-        if ($cart[$productId]['quantity'] <= 0) {
-            unset($cart[$productId]);
-        }
-
-        session()->put('cart', $cart);
+        $case->handle($productId, $product);
 
         return redirect()->back()->with('Поздравляю! Товар добавлен в корзину!');
     }
@@ -85,8 +68,6 @@ class CartController extends Controller
 
         return redirect()->route('cart')->with('success', 'Товар удален из корзины.');
     }
-
-    // Внутри CartController
 
     /**
      * @throws ContainerExceptionInterface
