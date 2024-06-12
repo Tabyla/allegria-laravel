@@ -45,25 +45,27 @@
                     @endforeach
                 </div>
             </div>
-            @if ($cart->has($productId))
-                <div class="quantity-control" id="favorite-item-{{$productId}}">
-                    <button class="decrease-quantity" data-product-id="{{ $productId }}">-
-                    </button>
-                    <span class="product-quantity">{{ $cart->get($productId) }}</span>
-                    <button class="increase-quantity" data-product-id="{{ $productId }}">+
-                    </button>
-                </div>
-            @else
-                <form id="favorite-btn-{{$productId}}"
-                      action="{{route('cart.add', $productId)}}" class="password_form"
-                      method="post">
-                    {{ csrf_field() }}
-                    <button type="submit" class="add-to-cart">Добавить в
-                        корзину
-                    </button>
-                </form>
-            @endif
-            <button type="button" id="buy-btn" class="buy-btn">купить в один клик</button>
+            @auth()
+                @if ($cart->has($productId))
+                    <div class="quantity-control" id="favorite-item-{{$productId}}">
+                        <button class="decrease-quantity" data-product-id="{{ $productId }}">-
+                        </button>
+                        <span class="product-quantity">{{ $cart->get($productId) }}</span>
+                        <button class="increase-quantity" data-product-id="{{ $productId }}">+
+                        </button>
+                    </div>
+                @else
+                    <form id="favorite-btn-{{$productId}}"
+                          action="{{route('cart.add', $productId)}}" class="password_form"
+                          method="post">
+                        {{ csrf_field() }}
+                        <button type="submit" class="add-to-cart">Добавить в
+                            корзину
+                        </button>
+                    </form>
+                @endif
+                <button type="button" id="buy-btn" class="buy-btn">купить в один клик</button>
+            @endauth
             <div class="modals-help">
                 <a id="payment" href="#">Оплата и доставка</a>
                 <a id="exchange" href="#">Возврат и обмен</a>
