@@ -7,6 +7,7 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Frontend\ChangePasswordRequest;
 use App\Http\Requests\Frontend\UpdateAddressRequest;
+use App\Models\Order;
 use App\Models\Product;
 use App\UseCases\Frontend\UpdateAddressCase;
 use Illuminate\Contracts\View\View;
@@ -29,6 +30,7 @@ class ProfileController extends Controller
         $favorites = Product::favoriteProducts($user->id);
         $cart = session()->get('cart', []);
         $cartItemsMap = collect(array_map(function($item) { return $item['quantity']; }, $cart));
+        $orders = Order::where('user_id', $user->id)->orderBy('created_at', 'desc')->get();
 
         return view(
             'frontend.profile',
@@ -37,6 +39,7 @@ class ProfileController extends Controller
                 'profile' => $profile,
                 'favorites' => $favorites,
                 'cart' => $cartItemsMap,
+                'orders' => $orders,
             ]
         );
     }

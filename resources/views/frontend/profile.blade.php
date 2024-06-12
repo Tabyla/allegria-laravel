@@ -10,7 +10,7 @@
         <div class="profile">
             <div class="profile-links">
                 <button data-num="1" type="button" id="btn" class="btn1">
-                    <div class="img"><img src="{{asset('images/profile-icon.png')}}" alt="profile"></div>
+                    <div class="img"><img src="{{asset('images/profile.png')}}" alt="profile"></div>
                     <div class="active-img"><img src="{{asset('images/active-profile-icon.png')}}" alt="profile">
                     </div>
                     <h2>Личная информация</h2>
@@ -27,6 +27,11 @@
                     <h2>Лист пожеланий</h2>
                 </button>
                 <button data-num="4" type="button" id="btn" class="btn4">
+                    <div class="img"><img src="{{asset('images/order-history.png')}}" alt="list"></div>
+                    <div class="active-img"><img src="{{asset('images/active-order-history.png')}}" alt="list"></div>
+                    <h2>История покупок</h2>
+                </button>
+                <button data-num="5" type="button" id="btn" class="btn5">
                     <div class="img"><img src="{{asset('images/password-icon.png')}}" alt="password"></div>
                     <div class="active-img"><img src="{{asset('images/active-password-icon.png')}}" alt="password">
                     </div>
@@ -121,7 +126,24 @@
                         @endforeach
                     </div>
                 </div>
-                <div class="password-block text info" id="block4">
+                <div class="orders-history info" id="block4">
+                    @foreach($orders as $order)
+                        <div class="order-item">
+                            <div class="order-left">
+                                <h3>Заказ №{{ $order->id }}</h3>
+                            </div>
+                            <div class="order-right">
+                                <p>Дата заказа: {{ $order->created_at->format('d.m.Y') }}</p>
+                                <p>Статус:  {{ $order->translated_status }}</p>
+                            </div>
+                        </div>
+                        <div class="order-link">
+                            <button type="button" class="submit_btn"><a href="{{ route('order.show', $order->id) }}">Подробнее</a></button>
+                        </div>
+                        <div class="product-line"></div>
+                    @endforeach
+                </div>
+                <div class="password-block text info" id="block5">
                     <form action="{{route('profile.change-password')}}" class="password_form" method="post">
                         {{ csrf_field() }}
                         <div class="password-form-content">
