@@ -8,11 +8,12 @@ use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class BrandSeeder extends Seeder
+class BrandsSeeder extends Seeder
 {
     public function run(): void
     {
         $now = Carbon::now();
+
         $brands = ['American Vintage', 'Deha', 'George Gina & Lucy', 'Birkenstock'];
         foreach ($brands as $brand) {
             DB::table('brands')->insert([
