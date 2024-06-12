@@ -20,6 +20,11 @@ class AuthenticatedSessionController extends Controller
         return view('frontend.auth.login');
     }
 
+    public function adminCreate(): View
+    {
+        return view('backend.adminlte-layout.auth.login');
+    }
+
     /**
      * @throws ValidationException
      */
