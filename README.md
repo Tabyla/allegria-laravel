@@ -1,4 +1,4 @@
-# Alegria
+# Allegria
 
 ## Quickstart
 1. [Install docker](https://docs.docker.com/install/)
@@ -78,4 +78,10 @@ make yarn-prod
 ```
 Login: admin@example.com
 Password: admin
+```
+
+`user` role account
+```
+Login: user@example.com
+Password: user
 ```
