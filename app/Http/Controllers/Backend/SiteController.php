@@ -1,13 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Contracts\View\View;
-
-
 
 class SiteController extends Controller
 {
@@ -24,7 +24,6 @@ class SiteController extends Controller
     public function pages(): View
     {
         $pages = array_map(function ($route) {
-
             return [
                 'URI' => $route->uri(),
                 'Server' => $route->getDomain() ?: 'Main',

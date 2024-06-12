@@ -26,7 +26,9 @@ class ProductController extends Controller
         $colors = PropertyValue::productColors($productId->id);
         $productImages = ProductImage::productImages($productId->id);
         $cart = session()->get('cart', []);
-        $cartItemsMap = collect(array_map(function($item) { return $item['quantity']; }, $cart));
+        $cartItemsMap = collect(array_map(function ($item) {
+            return $item['quantity'];
+        }, $cart));
 
         return view(
             'frontend.product',

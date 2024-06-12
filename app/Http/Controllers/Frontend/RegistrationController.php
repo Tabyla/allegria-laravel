@@ -16,6 +16,7 @@ class RegistrationController extends Controller
     {
         $this->middleware('guest');
     }
+
     public function index(): View
     {
         return view('frontend.reg',);

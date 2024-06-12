@@ -1,23 +1,25 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
+declare(strict_types=1);
+
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class CreatePermissionTables extends Migration
 {
     /**
-     * Run the migrations.
-     *
-     * @return void
+     * @throws Exception
      */
-    public function up()
+    public function up(): void
     {
         $tableNames = config('permission.table_names');
         $columnNames = config('permission.column_names');
 
         if (empty($tableNames)) {
-            throw new \Exception('Error: config/permission.php not loaded. Run [php artisan config:clear] and try again.');
+            throw new Exception(
+                'Error: config/permission.php not loaded. Run [php artisan config:clear] and try again.'
+            );
         }
 
         Schema::create($tableNames['permissions'], function (Blueprint $table) {
@@ -38,21 +40,25 @@ class CreatePermissionTables extends Migration
             $table->unique(['name', 'guard_name']);
         });
 
-        Schema::create($tableNames['model_has_permissions'], function (Blueprint $table) use ($tableNames, $columnNames) {
-            $table->unsignedBigInteger('permission_id');
+        Schema::create(
+            $tableNames['model_has_permissions'],
+            function (Blueprint $table) use ($tableNames, $columnNames) {
+                $table->unsignedBigInteger('permission_id');
 
-            $table->string('model_type');
-            $table->unsignedBigInteger($columnNames['model_morph_key']);
-            $table->index([$columnNames['model_morph_key'], 'model_type'], 'model_has_permissions_model_id_model_type_index');
+                $table->string('model_type');
+                $table->unsignedBigInteger($columnNames['model_morph_key']);
+                $table->index([$columnNames['model_morph_key'], 'model_type'],
+                    'model_has_permissions_model_id_model_type_index');
 
-            $table->foreign('permission_id')
-                ->references('id')
-                ->on($tableNames['permissions'])
-                ->onDelete('cascade');
+                $table->foreign('permission_id')
+                    ->references('id')
+                    ->on($tableNames['permissions'])
+                    ->onDelete('cascade');
 
-            $table->primary(['permission_id', $columnNames['model_morph_key'], 'model_type'],
+                $table->primary(['permission_id', $columnNames['model_morph_key'], 'model_type'],
                     'model_has_permissions_permission_model_type_primary');
-        });
+            }
+        );
 
         Schema::create($tableNames['model_has_roles'], function (Blueprint $table) use ($tableNames, $columnNames) {
             $table->unsignedBigInteger('role_id');
@@ -67,7 +73,7 @@ class CreatePermissionTables extends Migration
                 ->onDelete('cascade');
 
             $table->primary(['role_id', $columnNames['model_morph_key'], 'model_type'],
-                    'model_has_roles_role_model_type_primary');
+                'model_has_roles_role_model_type_primary');
         });
 
         Schema::create($tableNames['role_has_permissions'], function (Blueprint $table) use ($tableNames) {
@@ -93,16 +99,16 @@ class CreatePermissionTables extends Migration
     }
 
     /**
-     * Reverse the migrations.
-     *
-     * @return void
+     * @throws Exception
      */
-    public function down()
+    public function down(): void
     {
         $tableNames = config('permission.table_names');
 
         if (empty($tableNames)) {
-            throw new \Exception('Error: config/permission.php not found and defaults could not be merged. Please publish the package configuration before proceeding, or drop the tables manually.');
+            throw new \Exception(
+                'Error: config/permission.php not found and defaults could not be merged. Please publish the package configuration before proceeding, or drop the tables manually.'
+            );
         }
 
         Schema::drop($tableNames['role_has_permissions']);

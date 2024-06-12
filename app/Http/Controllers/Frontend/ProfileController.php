@@ -29,7 +29,9 @@ class ProfileController extends Controller
         $profile = $user->profile;
         $favorites = Product::favoriteProducts($user->id);
         $cart = session()->get('cart', []);
-        $cartItemsMap = collect(array_map(function($item) { return $item['quantity']; }, $cart));
+        $cartItemsMap = collect(array_map(function ($item) {
+            return $item['quantity'];
+        }, $cart));
         $orders = Order::where('user_id', $user->id)->orderBy('created_at', 'desc')->get();
 
         return view(

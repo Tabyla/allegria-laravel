@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Schema;
 class CreateFavoritesTable extends Migration
 {
     private const string TABLE_NAME = 'favorites';
+
     public function up(): void
     {
         Schema::create(self::TABLE_NAME, function (Blueprint $table) {

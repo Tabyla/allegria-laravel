@@ -21,7 +21,12 @@ class CallbackMail extends Mailable
 
     public function build(): CallbackMail
     {
-        return $this->subject('Вопрос от пользователя')->view('frontend.emails.callback',
-            ['details' => $this->details]);
+        return $this->subject('Вопрос от пользователя')
+            ->view(
+                'frontend.emails.callback',
+                [
+                    'details' => $this->details
+                ]
+            );
     }
 }

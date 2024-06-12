@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateFailedJobsTable extends Migration
 {
-    private const TABLE_NAME = 'failed_jobs';
+    private const string TABLE_NAME = 'failed_jobs';
 
     public function up(): void
     {

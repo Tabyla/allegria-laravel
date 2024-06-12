@@ -16,8 +16,10 @@ class PasswordRecoveryController extends Controller
     protected SendRecoveryLinkCase $sendRecoveryLinkCase;
     protected SendPasswordRecoveryCase $sendNewPasswordCase;
 
-    public function __construct(SendRecoveryLinkCase $sendRecoveryLinkCase, SendPasswordRecoveryCase $sendNewPasswordCase)
-    {
+    public function __construct(
+        SendRecoveryLinkCase $sendRecoveryLinkCase,
+        SendPasswordRecoveryCase $sendNewPasswordCase
+    ) {
         $this->sendRecoveryLinkCase = $sendRecoveryLinkCase;
         $this->sendNewPasswordCase = $sendNewPasswordCase;
     }
@@ -29,7 +31,8 @@ class PasswordRecoveryController extends Controller
         $user = User::where('email', $request->recoveryEmail)->first();
 
         if (!$user) {
-            return redirect()->back()->withErrors(['recoveryEmail' => 'Пользователь с таким Email не существует'])->withInput();
+            return redirect()->back()->withErrors(['recoveryEmail' => 'Пользователь с таким Email не существует']
+            )->withInput();
         }
 
         $this->sendRecoveryLinkCase->handle($user);

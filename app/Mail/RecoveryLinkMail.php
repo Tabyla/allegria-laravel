@@ -21,7 +21,12 @@ class RecoveryLinkMail extends Mailable
 
     public function build(): RecoveryLinkMail
     {
-        return $this->subject('Восстановление пароля')->view('frontend.emails.recovery_link',
-            ['url' => $this->recoveryUrl]);
+        return $this->subject('Восстановление пароля')
+            ->view(
+                'frontend.emails.recovery_link',
+                [
+                    'url' => $this->recoveryUrl
+                ]
+            );
     }
 }

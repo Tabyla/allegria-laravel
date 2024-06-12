@@ -56,7 +56,13 @@ class YooKassaClient
         );
 
         if ($payment) {
-            $order->update(['status' => Order::STATUS_AWAITING_CONFIRMATION, 'payment_id' => $payment->getId(), 'payment_status' => $payment->getStatus()]);
+            $order->update(
+                [
+                    'status' => Order::STATUS_AWAITING_CONFIRMATION,
+                    'payment_id' => $payment->getId(),
+                    'payment_status' => $payment->getStatus()
+                ]
+            );
         }
     }
 }

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Mail;
 
 use Illuminate\Bus\Queueable;
@@ -19,7 +21,12 @@ class PasswordRecoveryMail extends Mailable
 
     public function build(): PasswordRecoveryMail
     {
-        return $this->subject('Восстановление пароля')->view('frontend.emails.recovery',
-            ['password' => $this->newPassword]);
+        return $this->subject('Восстановление пароля')
+            ->view(
+                'frontend.emails.recovery',
+                [
+                    'password' => $this->newPassword
+                ]
+            );
     }
 }
