@@ -64,7 +64,7 @@ class OrderController extends Controller
             return redirect()->route('cart')->with('error', 'Ваша корзина пуста.');
         }
 
-        $case->handle(
+        $confirmationUrl = $case->handle(
             $cart,
             $user->id,
             $request->input('address', 'default address')
@@ -74,6 +74,6 @@ class OrderController extends Controller
 
         session()->forget('cart');
 
-        return redirect()->route('order.show', ['id' => $orderId]);
+        return redirect($confirmationUrl);
     }
 }

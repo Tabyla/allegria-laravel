@@ -35,7 +35,7 @@ class YooKassaClient
      * @throws TooManyRequestsException
      * @throws UnauthorizedException
      */
-    public function createPayment(Order $order): void
+    public function createPayment(Order $order): string
     {
         $client = new Client();
         $client->setAuth($this->shopId, $this->secretKey);
@@ -64,5 +64,7 @@ class YooKassaClient
                 ]
             );
         }
+
+        return $payment->confirmation->getConfirmationUrl();
     }
 }

@@ -38,7 +38,7 @@ class CreateOrderCase
      * @throws TooManyRequestsException
      * @throws UnauthorizedException
      */
-    public function handle(array $cart, int $userId, string $address): void
+    public function handle(array $cart, int $userId, string $address): string
     {
         $totalPrice = 0;
         foreach ($cart as $item) {
@@ -63,6 +63,6 @@ class CreateOrderCase
         }
 
         Session::put('last_order_id', $order->id);
-        $this->client->createPayment($order);
+        return $this->client->createPayment($order);
     }
 }
