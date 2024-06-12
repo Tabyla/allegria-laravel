@@ -70,8 +70,6 @@ class OrderController extends Controller
             $request->input('address', 'default address')
         );
 
-        $orderId = Session::get('last_order_id');
-
         session()->forget('cart');
 
         return redirect($confirmationUrl);
