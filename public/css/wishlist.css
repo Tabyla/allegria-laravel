@@ -1,0 +1,170 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 1440px;
+    margin: 0 auto;
+}
+
+h1 {
+    font-size: 25px;
+    text-transform: uppercase;
+    font-family: 'Jost', sans-serif;
+    font-weight: 500;
+}
+
+.text {
+    font-family: 'Jost', sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+}
+
+body{
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.default-cart{
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.cart-info{
+    margin-top: 80px;
+    text-align: center;
+    width: 390px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 240px;
+    justify-content: space-between;
+}
+
+.products-block {
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 600px;
+    align-items: center
+}
+
+.quantity-control{
+    font-family: 'Jost', sans-serif;
+    font-weight: 500;
+    color: #0F303F;
+    font-size: 16px;
+    width: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.quantity-control button{
+    width: 30px !important;
+    height: 30px;
+    border: 1px solid #0F303F !important;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: .6s ease;
+    font-size: 20px;
+    background: transparent;
+}
+
+.quantity-control button:hover{
+    background: #0F303F;
+    color: #eaeaea;
+}
+
+.product-row-line{
+    margin-left: 45px;
+    padding-right: 45px;
+    border-left: 1px solid #EAE9E8;
+    height: 310px;
+}
+
+.product-row{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.list-delete {
+    background-color: transparent;
+    border: transparent;
+    cursor: pointer;
+    position: absolute;
+    right: 40px;
+    top: 60px;
+}
+
+.product {
+    padding: 60px 40px 0 40px;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    width: 335px;
+    align-items: center;
+}
+
+
+.product-image {
+    width: 110px;
+}
+
+.product-info {
+    display: flex;
+    flex-direction: column;
+    height: 140px;
+    justify-content: space-between;
+    width: 200px;
+}
+
+.product-content {
+    display: flex;
+    flex-direction: column;
+    height: 72px;
+    justify-content: space-between;
+}
+
+.name {
+    font-family: 'Jost', sans-serif;
+    font-weight: 500;
+    color: #0F303F;
+    font-size: 18px;
+    text-transform: uppercase;
+}
+
+.category {
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    color: #0F303F;
+}
+
+.cost {
+    font-family: 'Jost', sans-serif;
+    font-weight: 500;
+    color: #FD5454;
+    font-size: 14px;
+}
+
+.list-btn {
+    cursor: pointer;
+    width: 200px;
+    height: 50px;
+    border: 1px solid #0F303F;
+    background: transparent;
+    text-transform: uppercase;
+    color: #0F303F;
+    font-family: 'Jost', sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+footer {
+    margin-top: auto !important;
+}

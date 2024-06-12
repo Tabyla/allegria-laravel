@@ -1,0 +1,284 @@
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+h1 {
+    font-size: 25px;
+    text-transform: uppercase;
+    font-family: 'Jost', sans-serif;
+    font-weight: 500;
+}
+
+h2 {
+    margin-top: 20px;
+    font-size: 14px;
+    text-transform: uppercase;
+    font-family: 'Jost', sans-serif;
+    font-weight: 500;
+}
+
+.text {
+    font-size: 12px;
+    font-family: 'Jost', sans-serif;
+    font-weight: 700;
+}
+
+.product-page {
+    display: flex;
+    justify-content: center;
+    margin: 20px;
+}
+
+.product-gallery {
+    display: flex;
+}
+
+.thumbnails {
+    display: flex;
+    flex-direction: column;
+    margin-right: 20px;
+}
+
+.thumbnail {
+    width: 60px;
+    height: 85px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    border: 1px solid transparent;
+    transition: border 0.3s ease;
+}
+
+.thumbnail:hover,
+.thumbnail.active {
+    border: 1px solid #474747;
+}
+
+.main-image {
+    width: 300px;
+    height: 435px;
+}
+
+#main-image {
+    width: 100%;
+    height: auto;
+}
+
+.product-content {
+    display: flex;
+    flex-direction: column;
+    margin-left: 40px;
+}
+
+.product-info {
+    height: 125px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    color: #0F303F;
+}
+
+.category {
+    font-size: 16px;
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+}
+
+.brand {
+    font-size: 18px;
+    font-family: 'Jost', sans-serif;
+    font-weight: 400;
+}
+
+.price {
+    font-size: 20px;
+    text-transform: uppercase;
+    font-family: 'Jost', sans-serif;
+    font-weight: 500;
+}
+
+.sizes-block {
+    margin-top: 20px;
+}
+
+.sizes {
+    display: flex;
+}
+
+.block-content {
+    width: 20px;
+    height: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    margin: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.block-content:hover {
+    background-color: #f0f0f0;
+}
+
+.colors-block {
+    margin-top: 20px;
+}
+
+.colors {
+    display: flex;
+}
+
+.add-to-cart{
+    margin-top: 20px;
+    width: 280px;
+    height: 50px;
+    background-color: transparent;
+    border: 1px solid #0F303F;
+    font-size: 16px;
+    text-transform: uppercase;
+    font-family: 'Jost', sans-serif;
+    font-weight: 500;
+    cursor: pointer;
+    transition: .1s ease;
+}
+
+.buy-btn{
+    margin-top: 10px;
+    width: 280px;
+    height: 50px;
+    background-color: #0F303F;
+    border: transparent;
+    color: #fff;
+    font-size: 16px;
+    text-transform: uppercase;
+    font-family: 'Jost', sans-serif;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.black {
+    width: 10px;
+    height: 10px;
+    background: black;
+    border-radius: 50%;
+}
+
+.black:hover {
+    background: #404040;
+}
+
+.modals-help{
+    margin-top: 20px;
+    display: flex;
+    width: 280px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.quantity-control{
+    margin-top: 10px;
+    font-family: 'Jost', sans-serif;
+    font-weight: 500;
+    color: #0F303F;
+    font-size: 16px;
+    width: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.quantity-control button{
+    width: 30px !important;
+    height: 30px;
+    border: 1px solid #0F303F !important;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: .6s ease;
+    font-size: 20px;
+    background: transparent;
+}
+
+.quantity-control button:hover{
+    background: #0F303F;
+    color: #eaeaea;
+}
+
+.modals-help a{
+    text-decoration: none;
+    opacity: .3;
+    color: #0F303F;
+    font-size: 14px;
+    font-family: 'Jost', sans-serif;
+    font-weight: 700;
+    cursor: pointer;
+    transition: .4s ease;
+}
+
+.modals-help a:hover{
+    opacity: .5;
+    color: #0F303F;
+}
+
+.description{
+    margin-top: 10px;
+    max-width: 280px;
+    text-wrap: wrap;
+    font-size: 14px;
+    font-family: 'Jost', sans-serif;
+    font-weight: 700;
+}
+
+.red {
+    width: 10px;
+    height: 10px;
+    background: red;
+    border-radius: 50%;
+}
+
+.red:hover {
+    background: #b30000;
+}
+
+.blue {
+    width: 10px;
+    height: 10px;
+    background: blue;
+    border-radius: 50%;
+}
+
+.blue:hover {
+    background: #0000c5;
+}
+
+.green {
+    width: 10px;
+    height: 10px;
+    background: green;
+    border-radius: 50%;
+}
+
+.green:hover {
+    background: #004000;
+}
+
+.white {
+    width: 10px;
+    height: 10px;
+    background: white;
+    border-radius: 50%;
+}
+
+.purple {
+    width: 10px;
+    height: 10px;
+    background: purple;
+    border-radius: 50%;
+}
+
+.purple:hover {
+    background: #610061;
+}

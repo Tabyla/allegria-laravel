@@ -1,0 +1,351 @@
+* {
+    user-select: none;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 1440px;
+    margin: 0 auto;
+}
+
+h1 {
+    font-size: 25px;
+    text-transform: uppercase;
+    font-family: 'Jost', sans-serif;
+    font-weight: 500;
+    margin-left: 15px;
+}
+
+h2 {
+    font-size: 18px;
+    text-transform: uppercase;
+    font-family: 'Jost', sans-serif;
+    font-weight: 500;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.catalog-block {
+    display: flex;
+    margin-top: 50px !important;
+}
+
+.categories {
+    display: flex;
+    flex-direction: column;
+    width: 220px;
+}
+
+.categories .box {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.categories .box .label {
+    margin-bottom: 5px;
+    border-bottom: 1px solid #EAE9E8;
+    position: relative;
+    display: flex;
+    align-items: center;
+    height: 50px;
+    font-size: 14px;
+    font-family: 'Jost', sans-serif;
+    font-weight: 400;
+    cursor: pointer;
+}
+
+.categories .box .label::after {
+    content: "+";
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 20px;
+    font-size: 18px;
+    font-weight: 400;
+}
+
+.categories .box.active .label::after {
+    content: "\2014";
+}
+
+.categories .box .content {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    background-color: #fff;
+    overflow: hidden;
+    max-height: 0;
+    transition: 0.3s;
+}
+
+.subcategory {
+    text-decoration: none;
+    color: #003c5f;
+    width: fit-content;
+    text-align: left;
+    cursor: pointer;
+    background: transparent;
+    border: transparent;
+    padding-top: 5px;
+    max-width: 220px;
+    font-size: 14px;
+    font-family: 'Jost', sans-serif;
+    font-weight: 700;
+}
+
+.subcategory:hover {
+    color: #E64926;
+}
+
+.catalog-products {
+    margin-left: 10px;
+    width: 840px;
+}
+
+.filtration {
+    margin: 45px 0 0 15px;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-toggle {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 10px 20px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 235px;
+    height: 40px;
+}
+
+.dropdown-toggle::after {
+    content: '▼';
+    margin-left: 10px;
+    font-size: 10px;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    z-index: 1;
+    border: 1px solid #ccc;
+    margin-top: 5px;
+    flex-wrap: wrap;
+}
+
+#size-dropdownMenu.show, #color-dropdownMenu.show, #brand-dropdownMenu.show {
+    display: flex;
+}
+
+.dropdown-content {
+    width: 20px;
+    height: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    margin: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.dropdown-content:hover {
+    background-color: #f0f0f0;
+}
+
+.brand-dropdown-content{
+    text-transform: uppercase;
+    width: 180px;
+    height: 25px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    margin: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.brand-dropdown-content:hover{
+    background-color: #f0f0f0;
+}
+
+.selected-value{
+    background-color: #f0f0f0;
+}
+
+.dropdown-menu button {
+    text-transform: uppercase;
+    background-color: #003c5f;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    margin-top: 20px;
+    width: 100%;
+}
+
+.dropdown-menu button:hover {
+    background-color: #00283e;
+}
+
+.sort {
+    margin-left: 15px;
+    margin-top: 25px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.sort p {
+    font-size: 14px;
+    font-family: 'Jost', sans-serif;
+    font-weight: 700;
+    opacity: .3;
+}
+
+.sorting {
+    display: flex;
+}
+
+.sorting select {
+    width: auto;
+    background: transparent;
+    border: transparent;
+    font-size: 14px;
+    font-family: 'Jost', sans-serif;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.products {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.product {
+    margin-top: 40px;
+    width: 270px;
+    height: 470px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.product a{
+    text-decoration: none;
+    color: #0F303F;
+}
+
+.content-img {
+    width: 320px;
+    height: 370px;
+    overflow: hidden;
+    position: relative;
+}
+
+.content-img img {
+    width: 100%;
+    max-width: 320px;
+    max-height: 370px;
+    object-fit: contain;
+}
+
+.content-img input {
+    position: absolute;
+    border: transparent;
+    border-radius: 30px;
+    cursor: pointer;
+    bottom: 2%;
+    right: 16%;
+}
+
+.cancel-filter{
+    margin-top: 10px !important;
+    background: transparent !important;
+    border: 1px solid #0F303F !important;
+    color: #0F303F !important;
+}
+
+.category {
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+}
+
+.price {
+    font-size: 14px;
+    text-transform: uppercase;
+    font-family: 'Jost', sans-serif;
+    font-weight: 700;
+}
+
+.show-more {
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+}
+
+.black{
+    width: 15px;
+    height: 15px;
+    background: black;
+    border-radius: 50%;
+}
+.black:hover{
+    background: #404040;
+}
+.red{
+    width: 15px;
+    height: 15px;
+    background: red;
+    border-radius: 50%;
+}
+.red:hover{
+    background: #b30000;
+}
+.blue{
+    width: 15px;
+    height: 15px;
+    background: blue;
+    border-radius: 50%;
+}
+.blue:hover{
+    background: #0000c5;
+}
+.green{
+    width: 15px;
+    height: 15px;
+    background: green;
+    border-radius: 50%;
+}
+.green:hover{
+    background: #004000;
+}
+.white{
+    width: 15px;
+    height: 15px;
+    background: white;
+    border-radius: 50%;
+}
+.purple{
+    width: 15px;
+    height: 15px;
+    background: purple;
+    border-radius: 50%;
+}
+.purple:hover{
+    background: #610061;
+}
