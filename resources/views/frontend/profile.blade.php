@@ -27,15 +27,15 @@
                     <h2>Лист пожеланий</h2>
                 </button>
                 <button data-num="4" type="button" id="btn" class="btn4">
-                    <div class="img"><img src="{{asset('images/order-history.png')}}" alt="list"></div>
-                    <div class="active-img"><img src="{{asset('images/active-order-history.png')}}" alt="list"></div>
-                    <h2>История покупок</h2>
-                </button>
-                <button data-num="5" type="button" id="btn" class="btn5">
                     <div class="img"><img src="{{asset('images/password-icon.png')}}" alt="password"></div>
                     <div class="active-img"><img src="{{asset('images/active-password-icon.png')}}" alt="password">
                     </div>
                     <h2>Изменить пароль</h2>
+                </button>
+                <button data-num="5" type="button" id="btn" class="btn5">
+                    <div class="img"><img src="{{asset('images/order-history.png')}}" alt="list"></div>
+                    <div class="active-img"><img src="{{asset('images/active-order-history.png')}}" alt="list"></div>
+                    <h2>История покупок</h2>
                 </button>
                 <form action="{{route('logout')}}" method="POST">
                     {{csrf_field()}}
@@ -125,7 +125,24 @@
                         @endforeach
                     </div>
                 </div>
-                <div class="orders-history info" id="block4">
+                <div class="password-block text info" id="block4">
+                    <form action="{{route('profile.change-password')}}" class="password_form" method="post">
+                        {{ csrf_field() }}
+                        <div class="password-form-content">
+                            <input id="current_password" name="current_password" type="password"
+                                   placeholder="Старый пароль" required>
+                            {!! $errors->first('current_password', '<p class="help-block">:message</p>') !!}
+                            <input id="new_password" name="new_password" type="password" placeholder="Новый пароль"
+                                   required>
+                            {!! $errors->first('new_password', '<p class="help-block">:message</p>') !!}
+                            <input id="new_password_confirmation" name="new_password_confirmation" type="password"
+                                   required placeholder="Повторите пароль">
+                            {!! $errors->first('new_password_confirmation', '<p class="help-block">:message</p>') !!}
+                        </div>
+                        <input type="submit" class="submit_btn" value="сохранить">
+                    </form>
+                </div>
+                <div class="orders-history info" id="block5">
                     <div class="default-order-block text">
                         <p>Здесь будут ваши доставки.</p>
                         <p>Оформите заказ в корзине и возвращайтесь, чтобы узнать, где товары сейчас</p>
@@ -149,23 +166,6 @@
                             <div class="product-line"></div>
                         @endforeach
                     </div>
-                </div>
-                <div class="password-block text info" id="block5">
-                    <form action="{{route('profile.change-password')}}" class="password_form" method="post">
-                        {{ csrf_field() }}
-                        <div class="password-form-content">
-                            <input id="current_password" name="current_password" type="password"
-                                   placeholder="Старый пароль" required>
-                            {!! $errors->first('current_password', '<p class="help-block">:message</p>') !!}
-                            <input id="new_password" name="new_password" type="password" placeholder="Новый пароль"
-                                   required>
-                            {!! $errors->first('new_password', '<p class="help-block">:message</p>') !!}
-                            <input id="new_password_confirmation" name="new_password_confirmation" type="password"
-                                   required placeholder="Повторите пароль">
-                            {!! $errors->first('new_password_confirmation', '<p class="help-block">:message</p>') !!}
-                        </div>
-                        <input type="submit" class="submit_btn" value="сохранить">
-                    </form>
                 </div>
             </div>
         </div>
