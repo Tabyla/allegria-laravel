@@ -24,21 +24,24 @@
                            value="{{ old('register_email') }}">
                 </div>
                 <div class="form_data">
-                    <div class="password">
+                    <div class="pass`word">
                         <input required class="form_input" type="password" id="register-password"
                                name="register_password"
                                placeholder="Пароль" autocomplete="new-password">
                         <a href="#" class="password-control"></a>
                     </div>
-                    {!! $errors->first('register_password', '<p class="help-block">:message</p>') !!}
                     <div class="password">
                         <input required class="form_input" type="password" id="register-password-confirmation"
                                name="register_password_confirmation" placeholder="Повторите пароль"
                                autocomplete="new-password">
                         <a href="#" class="repassword-control"></a>
                     </div>
-                    {!! $errors->first('register_password_confirmation', '<p class="help-block">:message</p>') !!}
                 </div>
+                {!! $errors->first('firstname', '<p class="help-block">:message</p>') !!}
+                {!! $errors->first('surname', '<p class="help-block">:message</p>') !!}
+                {!! $errors->first('phone', '<p class="help-block">:message</p>') !!}
+                {!! $errors->first('register_email', '<p class="help-block">:message</p>') !!}
+                {!! $errors->first('register_password', '<p class="help-block">:message</p>') !!}
                 <div class="checkbox_verification">
                     <div class="first-item">
                         <div class="checkbox-mailing">
