@@ -1,6 +1,6 @@
 const regBody = $('body');
-const regPasswordInput = $('#regPassword');
-const regRePasswordInput = $('#password-confirmation');
+const regPasswordInput = $('#register-password');
+const regRePasswordInput = $('#register-password-confirmation');
 const form = document.getElementById('regForm');
 
 regBody.on('click', '.password-control', function () {
