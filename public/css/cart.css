@@ -314,6 +314,13 @@ body {
     font-weight: 400;
 }
 
+.nonaddress{
+    display: none;
+    font-family: 'Jost', sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+}
+
 footer {
     margin-top: auto !important;
 }

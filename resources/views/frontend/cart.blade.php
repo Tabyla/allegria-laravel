@@ -38,6 +38,7 @@
                         <input type="hidden" name="address" id="address-input">
                         <input type="submit" id="order-button" class="submit_btn" value="заказать">
                     </form>
+                    <h2 class="nonaddress">Заполните адрес</h2>
                 </div>
                 <div class="edit-address" id="edit-address">
                     <p>Редактирование адреса</p>
@@ -128,7 +129,6 @@
 
             updateCart(productId, currentQuantity + 1, quantityElement);
         });
-
 
         function updateCart(productId, newQuantity, quantityElement) {
             $.ajax({

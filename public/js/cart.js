@@ -8,8 +8,15 @@ $(document).ready(function () {
     $('#order-block').css('display', 'flex');
   });
 
+  if ($('.order-address p').is(':empty')){
+    $('#order-form').css('display', 'none')
+    $('.nonaddress').css('display', 'flex')
+  }
+
   if (sessionStorage.getItem('address')) {
     $('.order-address p').text(sessionStorage.getItem('address'));
+    $('.nonaddress').css('display', 'none')
+    $('#order-form').css('display', 'flex')
   }
 
   $('#save-address').on('click', function () {
@@ -18,12 +25,18 @@ $(document).ready(function () {
     let house = $('#house').val();
     let apartment = $('#apartment').val();
 
-    let newAddress = `г. ${city}, ул. ${street}, д. ${house}, кв. ${apartment}`;
-    sessionStorage.setItem('address', newAddress);
-    $('.order-address p').text(newAddress);
+    if (city && street && house && apartment){
+      let newAddress = `г. ${city}, ул. ${street}, д. ${house}, кв. ${apartment}`;
+      sessionStorage.setItem('address', newAddress);
+      $('.order-address p').text(newAddress);
 
-    $('#edit-address').css('display', 'none');
-    $('#order-block').css('display', 'flex');
+      $('#edit-address').css('display', 'none');
+      $('#order-block').css('display', 'flex');
+      location.reload();
+    }
+    else{
+      alert('Заполните поля');
+    }
   });
 
   $('#order-button').on('click', function(event) {
