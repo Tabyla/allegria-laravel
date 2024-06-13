@@ -64,7 +64,12 @@
                         </button>
                     </form>
                 @endif
-                <button type="button" id="buy-btn" class="buy-btn">купить в один клик</button>
+                <form id="add-to-cart-form"
+                      action="{{route('cart.add', $productId)}}" class="password_form"
+                      method="post">
+                    {{ csrf_field() }}
+                    <button type="submit" id="buy-btn" class="buy-btn">купить в один клик</button>
+                </form>
             @endauth
             <div class="modals-help">
                 <a id="payment" href="#">Оплата и доставка</a>
