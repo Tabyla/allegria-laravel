@@ -42,21 +42,6 @@
                 {!! $errors->first('phone', '<p class="help-block">:message</p>') !!}
                 {!! $errors->first('register_email', '<p class="help-block">:message</p>') !!}
                 {!! $errors->first('register_password', '<p class="help-block">:message</p>') !!}
-                <div class="checkbox_verification">
-                    <div class="first-item">
-                        <div class="checkbox-mailing">
-                            <input type="checkbox" id="checkbox-mailing" name="check">
-                            <label for="checkbox-mailing">Подписаться на рассылку</label>
-                        </div>
-                    </div>
-                    <div class="second-item">
-                        <div class="checkbox-privacy-policy">
-                            <input required type="checkbox" id="checkbox-privacy-policy" name="check">
-                            <label for="checkbox-privacy-policy">Я согласен с <a class="red_link" href="#">политикой
-                                    конфиденциальности</a></label>
-                        </div>
-                    </div>
-                </div>
                 <div class="form_btn">
                     <input type="submit" value="зарегистрироваться" class="submit_btn">
                     <p>У меня уже есть аккаунт чтобы <a class="red_link" id="openModal">Войти</a></p>
