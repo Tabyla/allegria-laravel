@@ -1,6 +1,5 @@
 <?php
 
-
 use App\Http\Controllers\Frontend\CatalogController;
 use Illuminate\Support\Facades\Route;
 

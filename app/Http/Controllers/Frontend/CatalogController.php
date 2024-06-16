@@ -14,9 +14,15 @@ use App\Models\PropertyValue;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Psr\Container\ContainerExceptionInterface;
+use Psr\Container\NotFoundExceptionInterface;
 
 class CatalogController extends Controller
 {
+    /**
+     * @throws ContainerExceptionInterface
+     * @throws NotFoundExceptionInterface
+     */
     public function index(Request $request): JsonResponse|View
     {
         $sort = $request->get('sort');
@@ -34,6 +40,10 @@ class CatalogController extends Controller
         $properties = Property::propertyList();
         $categories = Category::categoryList();
         $favorites = Favorite::where('user_id', auth()->id())->pluck('product_id')->toArray();
+        $cart = session()->get('cart', []);
+        $cartItemsMap = collect(array_map(function ($item) {
+            return $item['quantity'];
+        }, $cart));
 
         if ($request->ajax()) {
             return response()->json($products);
@@ -48,10 +58,15 @@ class CatalogController extends Controller
                 'properties' => $properties,
                 'categories' => $categories,
                 'favorites' => $favorites,
+                'cart' => $cartItemsMap,
             ]
         );
     }
 
+    /**
+     * @throws ContainerExceptionInterface
+     * @throws NotFoundExceptionInterface
+     */
     public function showCategory(Request $request, string $alias): JsonResponse|View
     {
         $selectedCategory = Category::where('alias', $alias)->firstOrFail();
@@ -72,6 +87,10 @@ class CatalogController extends Controller
         $properties = Property::propertyList();
         $categories = Category::categoryList();
         $favorites = Favorite::where('user_id', auth()->id())->pluck('product_id')->toArray();
+        $cart = session()->get('cart', []);
+        $cartItemsMap = collect(array_map(function ($item) {
+            return $item['quantity'];
+        }, $cart));
 
         if ($request->ajax()) {
             return response()->json($products);
@@ -87,6 +106,7 @@ class CatalogController extends Controller
                 'properties' => $properties,
                 'categories' => $categories,
                 'favorites' => $favorites,
+                'cart' => $cartItemsMap,
             ]
         );
     }

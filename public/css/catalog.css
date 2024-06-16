@@ -264,7 +264,16 @@ body {
     object-fit: contain;
 }
 
-.content-img input {
+.content-img input:nth-child(2) {
+    position: absolute;
+    border: transparent;
+    border-radius: 30px;
+    cursor: pointer;
+    bottom: 2%;
+    right: 32%;
+}
+
+.content-img input:nth-child(3) {
     position: absolute;
     border: transparent;
     border-radius: 30px;
