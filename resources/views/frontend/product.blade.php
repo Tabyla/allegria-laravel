@@ -70,6 +70,9 @@
                     {{ csrf_field() }}
                     <button type="submit" id="buy-btn" class="buy-btn">купить в один клик</button>
                 </form>
+            @else
+                <button type="submit" class="openAuthModal add-to-cart">Добавить в корзину</button>
+                <button type="submit" id="buy-btn" class="openAuthModal buy-btn">купить в один клик</button>
             @endauth
             <div class="modals-help">
                 <a id="payment" href="#">Оплата и доставка</a>
