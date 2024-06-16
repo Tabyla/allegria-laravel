@@ -50,13 +50,12 @@
         <div class="container collection_info">
             <div class="collection__description">
                 <h2>new <br>arrival</h2>
-                <p>Lorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipLorem ipsumLorem ipLorem ipsumLorem
-                    ipsumLorem ipsumLorem ipsumLorem ipLorem ipsumLorem ip</p>
+                <p>Откройте для себя нашу новую коллекцию одежды, вдохновленную элегантностью и стилем.</p>
                 <a class="btn" href="{{route('catalog')}}">Смотреть коллекцию</a>
             </div>
             <div class="collection__image">
                 <img src="{{asset('images/collection-img.png')}}" alt="collection img">
-                <p>Lorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipLorem ipsumLorem ip</p>
+                <p>Почувствуйте себя уверенно и стильно с нашими новыми поступлениями.</p>
             </div>
         </div>
     </section>
