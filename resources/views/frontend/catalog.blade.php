@@ -95,68 +95,71 @@
             <div class="products" id="product-list">
                 @foreach ($products as $product)
                     <div class="product">
-                        <div class="content-img">
-                            <img loading="lazy" src="{{ asset('images/products/' . $product->image_path) }}"
-                                 alt="{{ $product->product_name }}">
-                            @auth()
-                                @if(!in_array($product->id, $favorites))
-                                    <form action="{{ route('favorites.add', $product->id) }}" method="POST">
-                                        {{ csrf_field() }}
-                                        <input type="image" src="{{asset('images/add_favourites.png')}}"
-                                               alt="add favourites" class="favoriteAdd">
-                                    </form>
-                                    <form action="{{route('cart.add', $product->id)}}" method="post">
-                                        {{ csrf_field() }}
-                                        <input type="image" class="cartAdd" src="{{asset('images/add_cart.png')}}"
-                                               alt="add cart">
-                                    </form>
+                        <a href="{{ route('product.index', ['alias' => $product->alias]) }}">
+                            <div class="content-img">
+                                <img loading="lazy" src="{{ asset('images/products/' . $product->image_path) }}"
+                                     alt="{{ $product->product_name }}">
+                                @auth()
+                                    @if(!in_array($product->id, $favorites))
+                                        <form action="{{ route('favorites.add', $product->id) }}" method="POST">
+                                            {{ csrf_field() }}
+                                            <input type="image" src="{{asset('images/add_favourites.png')}}"
+                                                   alt="add favourites" class="favoriteAdd">
+                                        </form>
+                                        <form action="{{route('cart.add', $product->id)}}" method="post">
+                                            {{ csrf_field() }}
+                                            <input type="image" class="cartAdd" src="{{asset('images/add_cart.png')}}"
+                                                   alt="add cart">
+                                        </form>
+                                    @else
+                                        <form action="{{ route('favorites.remove', $product->id) }}" method="POST">
+                                            {{ csrf_field() }}
+                                            <input type="image" src="{{asset('images/favourites-select.png')}}"
+                                                   alt="add favourites" class="favoriteAdd">
+                                        </form>
+                                        <form action="{{route('cart.add', $product->id)}}" method="post">
+                                            {{ csrf_field() }}
+                                            <input type="image" class="cartAdd" src="{{asset('images/add_cart.png')}}"
+                                                   alt="add cart">
+                                        </form>
+                                    @endif
+                                    @if ($cart->has($product->id))
+                                        <form action="{{ route('favorites.add', $product->id) }}" method="POST">
+                                            {{ csrf_field() }}
+                                            <input type="image" src="{{asset('images/add_favourites.png')}}"
+                                                   alt="add favourites" class="favoriteAdd">
+                                        </form>
+                                        <form action="{{ route('cart.remove', $product->id) }}" method="POST">
+                                            {{ csrf_field() }}
+                                            <input type="image" class="cartAdd"
+                                                   src="{{asset('images/cart-select.png')}}"
+                                                   alt="add cart">
+                                        </form>
+                                    @endif
+                                    @if ($cart->has($product->id) && in_array($product->id, $favorites))
+                                        <form action="{{ route('favorites.remove', $product->id) }}" method="POST">
+                                            {{ csrf_field() }}
+                                            <input type="image" src="{{asset('images/favourites-select.png')}}"
+                                                   alt="add favourites" class="favoriteAdd">
+                                        </form>
+                                        <form action="{{ route('cart.remove', $product->id) }}" method="POST">
+                                            {{ csrf_field() }}
+                                            <input type="image" class="cartAdd"
+                                                   src="{{asset('images/cart-select.png')}}"
+                                                   alt="add cart">
+                                        </form>
+                                    @endif
                                 @else
-                                    <form action="{{ route('favorites.remove', $product->id) }}" method="POST">
-                                        {{ csrf_field() }}
-                                        <input type="image" src="{{asset('images/favourites-select.png')}}"
-                                               alt="add favourites" class="favoriteAdd">
-                                    </form>
-                                    <form action="{{route('cart.add', $product->id)}}" method="post">
-                                        {{ csrf_field() }}
-                                        <input type="image" class="cartAdd" src="{{asset('images/add_cart.png')}}"
-                                               alt="add cart">
-                                    </form>
-                                @endif
-                                @if ($cart->has($product->id))
-                                    <form action="{{ route('favorites.add', $product->id) }}" method="POST">
-                                        {{ csrf_field() }}
-                                        <input type="image" src="{{asset('images/add_favourites.png')}}"
-                                               alt="add favourites" class="favoriteAdd">
-                                    </form>
-                                    <form action="{{ route('cart.remove', $product->id) }}" method="POST">
-                                        {{ csrf_field() }}
-                                        <input type="image" class="cartAdd"
-                                               src="{{asset('images/cart-select.png')}}"
-                                               alt="add cart">
-                                    </form>
-                                @endif
-                                @if ($cart->has($product->id) && in_array($product->id, $favorites))
-                                    <form action="{{ route('favorites.remove', $product->id) }}" method="POST">
-                                        {{ csrf_field() }}
-                                        <input type="image" src="{{asset('images/favourites-select.png')}}"
-                                               alt="add favourites" class="favoriteAdd">
-                                    </form>
-                                    <form action="{{ route('cart.remove', $product->id) }}" method="POST">
-                                        {{ csrf_field() }}
-                                        <input type="image" class="cartAdd"
-                                               src="{{asset('images/cart-select.png')}}"
-                                               alt="add cart">
-                                    </form>
-                                @endif
-                            @else
-                                <input type="image" src="{{asset('images/add_favourites.png')}}" alt="add favourites"
-                                       class="openAuthModal favoriteAdd">
-                                <input type="image" src="{{asset('images/add_cart.png')}}" alt="add cart"
-                                       class="openAuthModal cartAdd">
-                            @endauth
-                        </div>
-                        <a href="{{ route('product.index', ['alias' => $product->alias]) }}"><h2
-                                class="name">{{ $product->product_name }}</h2></a>
+                                    <input type="image" src="{{asset('images/add_favourites.png')}}"
+                                           alt="add favourites"
+                                           class="openAuthModal favoriteAdd">
+                                    <input type="image" src="{{asset('images/add_cart.png')}}" alt="add cart"
+                                           class="openAuthModal cartAdd">
+                                @endauth
+                            </div>
+                        </a>
+                        <a href="{{ route('product.index', ['alias' => $product->alias]) }}">
+                            <h2 class="name">{{ $product->product_name }}</h2></a>
                         <p class="category">{{ $product->brand_name }}</p>
                         <p class="price">{{ $product->price }} руб</p>
                     </div>
