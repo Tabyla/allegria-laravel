@@ -16,8 +16,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::domain(env('ADMIN_DOMAIN', 'backend.' . env('DOMAIN', false)))
-    ->group(function () {
+Route::prefix('admin')->group(function () {
         Route::middleware('can:use-crud')->group(function () {
             Route::resource('/user', UserController::class);
             Route::resource('/callback', CallbackController::class);
