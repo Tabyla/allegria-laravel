@@ -12,86 +12,77 @@
                 <div class="first_column">
                     <h3 class="title">Покупки</h3>
                     <div class="box">
-                        <div class="label">Вопрос от покупателя</div>
+                        <div class="label">Как узнать, есть ли товар в наличии?</div>
                         <div class="content">
-                            <p class="text">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Esse
-                                adipisci ex impedit itaque labore. Dolorum tempore ipsum autem
-                                molestias corrupti possimus voluptate, quos accusamus esse maiores
-                                dolorem qui eaque facilis nemo nulla, amet excepturi laborum eveniet
-                                eligendi aperiam nostrum culpa.</p>
+                            <p class="text">На странице каждого товара указано его текущее наличие. Если товар доступен
+                                для покупки, вы увидите кнопку «Добавить в корзину». Если товар временно отсутствует на
+                                складе, рядом с ним будет указано «Нет в наличии» или вы сможете подписаться на
+                                уведомление о поступлении.</p>
                         </div>
                     </div>
                     <div class="box">
-                        <div class="label">Вопрос от покупателя</div>
+                        <div class="label">Какие способы оплаты доступны?</div>
                         <div class="content">
-                            <p class="text">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Esse
-                                adipisci ex impedit itaque labore. Dolorum tempore ipsum autem
-                                molestias corrupti possimus voluptate, quos accusamus esse maiores
-                                dolorem qui eaque facilis nemo nulla, amet excepturi laborum eveniet
-                                eligendi aperiam nostrum culpa.</p>
+                            <p class="text">Мы принимаем различные способы оплаты, включая банковские карты (Visa,
+                                MasterCard), электронные кошельки и переводы через популярные платежные системы. Вы
+                                можете выбрать наиболее удобный способ оплаты на странице оформления заказа. Все
+                                транзакции защищены и зашифрованы для обеспечения вашей безопасности.</p>
                         </div>
                     </div>
                     <div class="box">
-                        <div class="label">Вопрос от покупателя</div>
+                        <div class="label">Сколько времени займет доставка?</div>
                         <div class="content">
-                            <p class="text">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Esse
-                                adipisci ex impedit itaque labore. Dolorum tempore ipsum autem
-                                molestias corrupti possimus voluptate, quos accusamus esse maiores
-                                dolorem qui eaque facilis nemo nulla, amet excepturi laborum eveniet
-                                eligendi aperiam nostrum culpa.</p>
+                            <p class="text">Сроки доставки зависят от вашего местоположения и выбранного способа
+                                доставки. Обычно доставка по городу занимает 1-2 рабочих дня, а в другие регионы — от 3
+                                до 7 рабочих дней. Подробную информацию о сроках и стоимости доставки вы можете найти на
+                                странице «Доставка и оплата».</p>
                         </div>
                     </div>
                     <div class="box">
-                        <div class="label">Вопрос от покупателя</div>
+                        <div class="label">Есть ли скидки или специальные предложения?</div>
                         <div class="content">
-                            <p class="text">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Esse
-                                adipisci ex impedit itaque labore. Dolorum tempore ipsum autem
-                                molestias corrupti possimus voluptate, quos accusamus esse maiores
-                                dolorem qui eaque facilis nemo nulla, amet excepturi laborum eveniet
-                                eligendi aperiam nostrum culpa.</p>
+                            <p class="text">Мы регулярно предлагаем скидки и специальные предложения для наших клиентов.
+                                Подпишитесь на нашу рассылку или следите за обновлениями на сайте, чтобы быть в курсе
+                                всех акций.</p>
                         </div>
                     </div>
                     <div class="box">
-                        <div class="label">Вопрос от покупателя</div>
+                        <div class="label">Можно ли изменить адрес доставки после оформления заказа?</div>
                         <div class="content">
-                            <p class="text">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Esse
-                                adipisci ex impedit itaque labore. Dolorum tempore ipsum autem
-                                molestias corrupti possimus voluptate, quos accusamus esse maiores
-                                dolorem qui eaque facilis nemo nulla, amet excepturi laborum eveniet
-                                eligendi aperiam nostrum culpa.</p>
+                            <p class="text">Если вам нужно изменить адрес доставки, свяжитесь с нашей службой поддержки
+                                как можно скорее. Мы постараемся обновить адрес, если заказ еще не отправлен. После
+                                отправки заказа изменение адреса может быть затруднено или невозможно.</p>
                         </div>
                     </div>
                 </div>
                 <div class="second_column">
                     <h3 class="title">Возврат и обмен</h3>
                     <div class="box">
-                        <div class="label">Вопрос от покупателя</div>
+                        <div class="label">Могу ли я изменить или отменить свой заказ после его оформления?</div>
                         <div class="content">
-                            <p class="text">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Esse
-                                adipisci ex impedit itaque labore. Dolorum tempore ipsum autem
-                                molestias corrupti possimus voluptate, quos accusamus esse maiores
-                                dolorem qui eaque facilis nemo nulla, amet excepturi laborum eveniet
-                                eligendi aperiam nostrum culpa.</p>
+                            <p class="text">Мы стремимся обрабатывать заказы как можно быстрее, поэтому изменения или
+                                отмены возможны только до определенного этапа обработки. Если вам нужно изменить или
+                                отменить заказ, пожалуйста, свяжитесь с нашей службой поддержки клиентов как можно
+                                скорее. Мы постараемся помочь вам, но имейте в виду, что после того, как заказ
+                                отправлен, изменения или отмены могут быть невозможны.</p>
                         </div>
                     </div>
                     <div class="box">
-                        <div class="label">Вопрос от покупателя</div>
+                        <div class="label">Могу ли я вернуть товар, если у него обнаружен дефект?</div>
                         <div class="content">
-                            <p class="text">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Esse
-                                adipisci ex impedit itaque labore. Dolorum tempore ipsum autem
-                                molestias corrupti possimus voluptate, quos accusamus esse maiores
-                                dolorem qui eaque facilis nemo nulla, amet excepturi laborum eveniet
-                                eligendi aperiam nostrum culpa.</p>
+                            <p class="text">Да, если товар имеет производственный дефект, вы можете вернуть его для
+                                полного возмещения или обмена. Пожалуйста, свяжитесь с нашей службой поддержки как можно
+                                скорее и предоставьте фотографии дефекта. Мы предложим вам наиболее удобное решение для
+                                возврата или обмена дефектного товара.</p>
                         </div>
                     </div>
                     <div class="box">
-                        <div class="label">Вопрос от покупателя</div>
+                        <div class="label">Какой у вас срок на возврат товаров?</div>
                         <div class="content">
-                            <p class="text">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Esse
-                                adipisci ex impedit itaque labore. Dolorum tempore ipsum autem
-                                molestias corrupti possimus voluptate, quos accusamus esse maiores
-                                dolorem qui eaque facilis nemo nulla, amet excepturi laborum eveniet
-                                eligendi aperiam nostrum culpa.</p>
+                            <p class="text">Вы можете вернуть товар в течение 14 дней с момента получения заказа.
+                                Обратите внимание, что товар должен быть в оригинальном состоянии, без следов
+                                использования и в оригинальной упаковке. Мы не принимаем возвраты по истечении этого
+                                срока.</p>
                         </div>
                     </div>
                 </div>
