@@ -37,6 +37,14 @@
                     </a>
                 </li>
                 <li class="nav-item">
+                    <a href="{{route('property.index')}}" class="nav-link">
+                        <i class="nav-icon fas fa-fw fa-user"></i>
+                        <p>
+                            Свойства
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a href="{{route('callback.index')}}" class="nav-link">
                         <i class="nav-icon fas fa-fw fa-phone"></i>
                         <p>

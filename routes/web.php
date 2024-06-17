@@ -20,6 +20,8 @@ Route::prefix('admin')->group(function () {
         Route::middleware('can:use-crud')->group(function () {
             Route::resource('/user', UserController::class);
             Route::resource('/callback', CallbackController::class);
+            Route::resource('/property', ProperyController::class);
+            Route::resource('/brand', BrandController::class);
         });
         require __DIR__ . '/auth.php';
         require __DIR__ . '/admin.php';

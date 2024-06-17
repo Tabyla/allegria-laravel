@@ -169,6 +169,7 @@ return [
         'surname' => 'Фамилия',
         'firstname' => 'Имя',
         'register_email' => 'Почта',
+        'property-name' => 'Название свойства',
     ],
 
 ];
