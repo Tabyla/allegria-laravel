@@ -47,7 +47,6 @@
                             @endforeach
                             <button type="button" class="apply-filter" data-property="size">применить</button>
                             <button type="button" class="cancel-filter" id="cancel-size-filter">Отменить</button>
-
                         </div>
                     </div>
 

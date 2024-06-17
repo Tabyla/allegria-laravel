@@ -109,7 +109,6 @@ $(document).ready(function () {
   });
 });
 
-
 $(document).ready(function () {
   let selectedSize = $('#size_name').val();
   let selectedColor = $('#color_name').val();
