@@ -2,7 +2,7 @@
 @section('title', 'Главная')
 
 @section('additional_css')
-    <link rel="stylesheet" href="{{ asset('css/main.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/main.css') }}?v={{ time() }}">
 @endsection
 @section('content')
     <section>
