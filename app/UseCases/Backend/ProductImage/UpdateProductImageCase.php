@@ -5,16 +5,10 @@ declare(strict_types=1);
 namespace App\UseCases\Backend\ProductImage;
 
 use App\Models\ProductImage;
-use Illuminate\Contracts\Hashing\Hasher;
 use Illuminate\Http\UploadedFile;
 
 class UpdateProductImageCase
 {
-    public function __construct(
-        private readonly Hasher $hasher,
-    ) {
-    }
-
     public function handle(array $data, ?UploadedFile $imagePath, ProductImage $image): void
     {
         if ($imagePath) {

@@ -43,7 +43,7 @@ class ProductImageController extends Controller
         $imagePath = $request->file('image_path');
         $case->handle($data, $imagePath);
 
-        return redirect('admin/product_image')->with('flash_message', 'Бренд успешно добавлен!');
+        return redirect('admin/product_image')->with('flash_message', 'Изображение успешно добавлено!');
     }
 
     public function edit(int $id): View
@@ -64,7 +64,7 @@ class ProductImageController extends Controller
         $image = ProductImage::findOrFail($id);
         $case->handle($data, $imagePath, $image);
 
-        return redirect('admin/product_image')->with('flash_message', 'Свойство успешно отредактировано!');
+        return redirect('admin/product_image')->with('flash_message', 'Изображение успешно отредактировано!');
     }
 
     public function destroy(int $id): RedirectResponse
@@ -74,6 +74,6 @@ class ProductImageController extends Controller
             $image->delete();
         }
 
-        return redirect('admin/product_image')->with('flash_message', 'Пользователь удален!');
+        return redirect('admin/product_image')->with('flash_message', 'Изображение удалено!');
     }
 }

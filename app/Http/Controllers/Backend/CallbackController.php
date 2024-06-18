@@ -28,7 +28,7 @@ class CallbackController extends Controller
     {
         Callback::destroy($id);
 
-        return redirect('callback')->with('flash_message', 'Инфоромация об обратном звонке удален!');
+        return redirect('callback')->with('flash_message', 'Информация об обратном звонке удалена!');
     }
 
     public function callback(): View

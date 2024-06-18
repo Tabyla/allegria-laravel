@@ -39,15 +39,17 @@
                     @foreach($images as $item)
                         <tr>
                             <td>{{ $item->id }}</td>
-                            <td> <img class="product_image" loading="lazy" src="{{ asset('images/products/' . $item->image_path) }}"
-                                      alt="{{ $item->product->name }}"></td>
+                            <td><img class="product_image" loading="lazy"
+                                     src="{{ asset('images/products/' . $item->image_path) }}"
+                                     alt="{{ $item->product->name }}"></td>
                             <td>{{ $item->product->name }}</td>
                             <td class="action-buttons">
                                 <a href="{{route('product_image.edit', $item->id)}}" class="btn btn-primary btn-sm"
                                    title="Отредактировать изображение">
                                     <i class="fa fa-edit" aria-hidden="true"></i>
                                 </a>
-                                <form method="POST" action="{{ url('admin/product_image' . '/' . $item->id)}}" accept-charset="UTF-8"
+                                <form method="POST" action="{{ url('admin/product_image' . '/' . $item->id)}}"
+                                      accept-charset="UTF-8"
                                       style="display:inline">
                                     {{ method_field('DELETE') }}
                                     {{ csrf_field() }}

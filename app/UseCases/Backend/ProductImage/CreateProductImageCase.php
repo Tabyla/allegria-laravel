@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\UseCases\Backend\ProductImage;
 
 use App\Models\ProductImage;
-use Illuminate\Contracts\Hashing\Hasher;
 use Illuminate\Http\UploadedFile;
 
 class CreateProductImageCase

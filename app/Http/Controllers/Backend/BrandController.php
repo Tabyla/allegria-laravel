@@ -56,13 +56,13 @@ class BrandController extends Controller
         $brand->name = $data['brand-name'];
         $brand->save();
 
-        return redirect('admin/brand')->with('flash_message', 'Свойство успешно отредактировано!');
+        return redirect('admin/brand')->with('flash_message', 'Бренд успешно отредактирован!');
     }
 
     public function destroy(int $id): RedirectResponse
     {
         Brand::destroy($id);
 
-        return redirect('admin/brand')->with('flash_message', 'Пользователь удален!');
+        return redirect('admin/brand')->with('flash_message', 'Бренд удален!');
     }
 }

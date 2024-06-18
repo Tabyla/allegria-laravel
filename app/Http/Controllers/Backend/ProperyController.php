@@ -63,6 +63,6 @@ class ProperyController extends Controller
     {
         Property::destroy($id);
 
-        return redirect('admin/property')->with('flash_message', 'Пользователь удален!');
+        return redirect('admin/property')->with('flash_message', 'Свойство удалено!');
     }
 }
