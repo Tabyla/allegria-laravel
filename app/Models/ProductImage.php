@@ -29,4 +29,15 @@ class ProductImage extends Model
     {
         return $this->belongsTo(Product::class);
     }
+
+    public static function boot(): void
+    {
+        parent::boot();
+
+        static::deleting(function($image) {
+            if (file_exists(public_path('images/products/' . $image->image_path))) {
+                unlink(public_path('images/products/' . $image->image_path));
+            }
+        });
+    }
 }
