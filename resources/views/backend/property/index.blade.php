@@ -44,7 +44,8 @@
                                    title="Отредактировать свойство">
                                     <i class="fa fa-edit" aria-hidden="true"></i>
                                 </a>
-                                <form method="POST" action="{{ url('admin/property' . '/' . $item->id)}}" accept-charset="UTF-8"
+                                <form method="POST" action="{{ url('admin/property' . '/' . $item->id)}}"
+                                      accept-charset="UTF-8"
                                       style="display:inline">
                                     {{ method_field('DELETE') }}
                                     {{ csrf_field() }}

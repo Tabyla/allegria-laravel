@@ -25,7 +25,8 @@
             <br/>
             <br/>
 
-            <form method="POST" action="{{ route('product_image.update', ['product_image' => $image->id]) }}" accept-charset="UTF-8"
+            <form method="POST" action="{{ route('product_image.update', ['product_image' => $image->id]) }}"
+                  accept-charset="UTF-8"
                   class="form-horizontal" enctype="multipart/form-data">
                 {{ method_field('PUT') }}
                 {{ csrf_field() }}

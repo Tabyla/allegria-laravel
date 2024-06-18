@@ -48,14 +48,16 @@
                             <td>{{ $item->description }}</td>
                             <td>{{ $item->brand->name }}</td>
                             <td>{{ $item->category->name }}</td>
-                            <td><img class="product_image" loading="lazy" src="{{ asset('images/products/' . $item->mainImage->image_path) }}"
+                            <td><img class="product_image" loading="lazy"
+                                     src="{{ asset('images/products/' . $item->mainImage->image_path) }}"
                                      alt="{{ $item->name }}"></td>
                             <td class="action-buttons">
                                 <a href="{{route('products.edit', $item->id)}}" class="btn btn-primary btn-sm"
                                    title="Отредактировать товар">
                                     <i class="fa fa-edit" aria-hidden="true"></i>
                                 </a>
-                                <form method="POST" action="{{ url('admin/products' . '/' . $item->id)}}" accept-charset="UTF-8"
+                                <form method="POST" action="{{ url('admin/products' . '/' . $item->id)}}"
+                                      accept-charset="UTF-8"
                                       style="display:inline">
                                     {{ method_field('DELETE') }}
                                     {{ csrf_field() }}

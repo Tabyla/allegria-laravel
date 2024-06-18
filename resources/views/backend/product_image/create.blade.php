@@ -23,7 +23,8 @@
             <br/>
             <br/>
 
-            <form method="POST" enctype="multipart/form-data" action="{{ route('product_image.index') }}" accept-charset="UTF-8" class="form-horizontal">
+            <form method="POST" enctype="multipart/form-data" action="{{ route('product_image.index') }}"
+                  accept-charset="UTF-8" class="form-horizontal">
                 {{ csrf_field() }}
 
                 @include ('backend.product_image.form')

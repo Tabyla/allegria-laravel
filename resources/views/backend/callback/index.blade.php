@@ -40,11 +40,13 @@
                             <td>{{ $item->email }}</td>
                             <td>{{ $item->message }}</td>
                             <td class="action-buttons">
-                                <form method="POST" action="{{ url('admin/callback' . '/' . $item->id)}}" accept-charset="UTF-8"
+                                <form method="POST" action="{{ url('admin/callback' . '/' . $item->id)}}"
+                                      accept-charset="UTF-8"
                                       style="display:inline">
                                     {{ method_field('DELETE') }}
                                     {{ csrf_field() }}
-                                    <button type="submit" class="btn btn-danger btn-sm" title="Удаление обратного звонка"
+                                    <button type="submit" class="btn btn-danger btn-sm"
+                                            title="Удаление обратного звонка"
                                             onclick="return confirm('Удалить обратный звонок?')">
                                         <i class="fa fa-trash" aria-hidden="true"></i>
                                     </button>

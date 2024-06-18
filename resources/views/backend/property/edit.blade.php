@@ -25,7 +25,8 @@
             <br/>
             <br/>
 
-            <form method="POST" action="{{ route('property.update', ['property' => $property->id]) }}" accept-charset="UTF-8"
+            <form method="POST" action="{{ route('property.update', ['property' => $property->id]) }}"
+                  accept-charset="UTF-8"
                   class="form-horizontal">
                 {{ method_field('PUT') }}
                 {{ csrf_field() }}
