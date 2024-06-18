@@ -1,6 +1,6 @@
 @extends('backend.layouts.admin')
 
-@section('title', 'Изменить Свойство #{{ $user->name }}')
+@section('title', 'Изменить Свойство ' . $property->name)
 
 @section('content_header')
     <h1>Изменить свойство {{ $property->name }}</h1>
@@ -8,7 +8,7 @@
 
 @section('breadcrumb')
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="/">Главная</a></li>
+        <li class="breadcrumb-item"><a href="{{route('admin.index')}}">Главная</a></li>
         <li class="breadcrumb-item active"><a href="{{route('property.index')}}">Свойства</a></li>
         <li class="breadcrumb-item active">Редактировать</li>
     </ol>

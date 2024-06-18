@@ -8,7 +8,7 @@
 
 @section('breadcrumb')
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="/">Главная</a></li>
+        <li class="breadcrumb-item"><a href="{{route('admin.index')}}">Главная</a></li>
         <li class="breadcrumb-item active">Свойства</li>
     </ol>
 @endsection
@@ -41,7 +41,7 @@
                             <td><a href="{{route('property.edit', $item->id)}}">{{ $item->name }}</a></td>
                             <td class="action-buttons">
                                 <a href="{{route('property.edit', $item->id)}}" class="btn btn-primary btn-sm"
-                                   title="Отредактировать пользователя">
+                                   title="Отредактировать свойство">
                                     <i class="fa fa-edit" aria-hidden="true"></i>
                                 </a>
                                 <form method="POST" action="{{ url('admin/property' . '/' . $item->id)}}" accept-charset="UTF-8"

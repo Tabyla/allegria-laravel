@@ -1,14 +1,14 @@
 @extends('backend.layouts.admin')
 
-@section('title', 'Изменить пользователя #{{ $user->name }}')
+@section('title', 'Изменить пользователя' . $user->profile->surname)
 
 @section('content_header')
-    <h1>Изменить пользователя {{ $user->name }}</h1>
+    <h1>Изменить пользователя {{ $user->profile->surname }}</h1>
 @stop
 
 @section('breadcrumb')
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="/">Главная</a></li>
+        <li class="breadcrumb-item"><a href="{{route('admin.index')}}">Главная</a></li>
         <li class="breadcrumb-item active"><a href="{{route('user.index')}}">Пользователи</a></li>
         <li class="breadcrumb-item active">Редактировать</li>
     </ol>
