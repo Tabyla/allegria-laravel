@@ -27,7 +27,7 @@
 
     <link rel="stylesheet" href="{{asset('static/css/style.css')}}">
 
-    <link rel="stylesheet" href="{{asset('css/app.css')}}">
+    <link rel="stylesheet" href="{{asset('css/app.css')}}?v={{ time() }}">
 
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
