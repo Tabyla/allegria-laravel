@@ -1,6 +1,11 @@
 <div class="form-group">
     <label for="name" class="control-label">Имя</label>
-    <input class="form-control" name="name" type="text" id="name" value="{{ old('name', $user->profile->firstname) }}">
+    @if($user->profile)
+        <input class="form-control" name="name" type="text" id="name"
+               value="{{ old('name', $user->profile->firstname) }}">
+    @else
+        <input class="form-control" name="name" type="text" id="name">
+    @endif
     {!! $errors->first('name', '<p class="help-block">:message</p>') !!}
 </div>
 <div class="form-group">
@@ -9,14 +14,15 @@
     {!! $errors->first('email', '<p class="help-block">:message</p>') !!}
 </div>
 <div class="form-group">
-    <label for="password" class="control-label" >Пароль</label>
+    <label for="password" class="control-label">Пароль</label>
     <input class="form-control" name="password" type="password" id="password" autocomplete="new-password">
     {!! $errors->first('password', '<p class="help-block">:message</p>') !!}
 </div>
 <div class="form-group">
     <label for="role" class="control-label">Роль</label>
     <select name="role" id="role" class="custom-select">
-        @foreach($roles as $id => $role)
+        <option value="">Выберите роль</option>
+    @foreach($roles as $id => $role)
             <option value="{{ $id }}" {{ $user->hasRole($id) ? 'selected' : ''}}>{{ $role }}</option>
         @endforeach
     </select>
