@@ -1,6 +1,6 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
 
-    <a class="brand-link" href="{{route('/')}}">
+    <a class="brand-link" href="{{route('admin.index')}}">
         <img src="/vendor/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
              style="opacity: .8">
         <span class="brand-text font-weight-light">AdminLTE 3</span>
@@ -13,7 +13,7 @@
                 <img src="/vendor/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
-                <a href="{{route('/')}}" class="d-block">{{Auth::user()->profile->surname}}</a>
+                <a href="{{route('admin.index')}}" class="d-block">{{Auth::user()->profile->surname}}</a>
             </div>
         </div>
 
@@ -21,7 +21,7 @@
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                 data-accordion="false">
                 <li class="nav-item">
-                    <a href="/" class="nav-link">
+                    <a href="{{route('admin.index')}}" class="nav-link">
                         <i class="nav-icon far fa fa-home"></i>
                         <p>
                             Главная
@@ -33,6 +33,22 @@
                         <i class="nav-icon fas fa-fw fa-user"></i>
                         <p>
                             Пользователи
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{route('product_image.index')}}" class="nav-link">
+                        <i class="nav-icon fas fa-fw fa-user"></i>
+                        <p>
+                            Изображения товаров
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{route('brand.index')}}" class="nav-link">
+                        <i class="nav-icon fas fa-fw fa-user"></i>
+                        <p>
+                            Бренды
                         </p>
                     </a>
                 </li>

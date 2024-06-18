@@ -2,3 +2,13 @@
     color: red;
     font-size: 14px
 }
+
+.product_image{
+    width: 80px;
+}
+
+.form-group{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}

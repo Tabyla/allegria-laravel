@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\Backend\CallbackController;
+use App\Http\Controllers\Backend\ProductImageController;
+use App\Http\Controllers\Backend\ProperyController;
 use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\SiteController;
 use Illuminate\Support\Facades\Route;
@@ -22,6 +25,7 @@ Route::prefix('admin')->group(function () {
             Route::resource('/callback', CallbackController::class);
             Route::resource('/property', ProperyController::class);
             Route::resource('/brand', BrandController::class);
+            Route::resource('/product_image', ProductImageController::class);
         });
         require __DIR__ . '/auth.php';
         require __DIR__ . '/admin.php';

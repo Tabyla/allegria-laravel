@@ -170,6 +170,9 @@ return [
         'firstname' => 'Имя',
         'register_email' => 'Почта',
         'property-name' => 'Название свойства',
+        'brand-name' => 'Название бренда',
+        'image_path' => 'Изображение товара',
+        'product_id' => 'Товар',
     ],
 
 ];
