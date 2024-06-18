@@ -7,6 +7,7 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Backend\Property\SavePropertyRequest;
 use App\Models\Property;
+use App\UseCases\Backend\Property\CreatePropertyCase;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 
@@ -31,10 +32,10 @@ class ProperyController extends Controller
         ]);
     }
 
-    public function store(SavePropertyRequest $request): RedirectResponse
+    public function store(SavePropertyRequest $request, CreatePropertyCase $case): RedirectResponse
     {
         $data = $request->validated();
-        Property::create($data);
+        $case->handle($data);
 
         return redirect('admin/property')->with('flash_message', 'Свойство успешно добавлено!');
     }
@@ -52,7 +53,8 @@ class ProperyController extends Controller
     {
         $data = $request->validated();
         $property = Property::findOrFail($id);
-        $property->update($data);
+        $property->name = $data['property-name'];
+        $property->save();
 
         return redirect('admin/property')->with('flash_message', 'Свойство успешно отредактировано!');
     }
