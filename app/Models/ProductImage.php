@@ -30,6 +30,13 @@ class ProductImage extends Model
         return $this->belongsTo(Product::class);
     }
 
+    public static function getProductImages(int $id): Collection
+    {
+        $query = ProductImage::where('product_id', $id)->get();
+
+        return $query;
+    }
+
     public static function boot(): void
     {
         parent::boot();

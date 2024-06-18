@@ -37,6 +37,14 @@
                     </a>
                 </li>
                 <li class="nav-item">
+                    <a href="{{route('products.index')}}" class="nav-link">
+                        <i class="nav-icon fas fa-fw fa-user"></i>
+                        <p>
+                            Товары
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a href="{{route('product_image.index')}}" class="nav-link">
                         <i class="nav-icon fas fa-fw fa-user"></i>
                         <p>
