@@ -173,6 +173,11 @@ return [
         'brand-name' => 'Название бренда',
         'image_path' => 'Изображение товара',
         'product_id' => 'Товар',
+        'product-name' => 'Название товара',
+        'description' => 'Описание',
+        'price' => 'Цена',
+        'brand_id' => 'Бренд',
+        'category_id' => 'Категория',
     ],
 
 ];
