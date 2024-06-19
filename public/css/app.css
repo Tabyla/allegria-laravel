@@ -1,0 +1,23 @@
+.help-block {
+    color: red;
+    font-size: 14px
+}
+
+.product_image{
+    width: 80px;
+}
+
+.form_product_image{
+    width: 200px;
+}
+
+.form-group{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.table-bordered td, .table-bordered th{
+    max-width: 400px;
+}
+
